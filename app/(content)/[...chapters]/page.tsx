@@ -1,8 +1,6 @@
 import Content from "./Content";
 import ViewCounter from "./ViewCounter";
 
-// TODO: generateStaticParams
-
 export default function ChapterSlugPage({
   params,
 }: {
