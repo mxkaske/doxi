@@ -13,12 +13,14 @@ async function fetchChapters() {
 
 const _fetchChapters = fetchChapters();
 
+export const dynamic = "error";
+
 export async function generateStaticParams() {
   const chapters = await _fetchChapters;
-  return chapters.map((chapter) => {
+  return chapters.map((chapter) => ({
     // remove trailing "/"
-    return { chapters: chapter.url.slice(1, chapter.url.length).split("/") };
-  });
+    chapters: chapter.url.slice(1, chapter.url.length).split("/"),
+  }));
 }
 
 export default function BaseLayout({
