@@ -15,11 +15,10 @@ const _fetchChapters = fetchChapters();
 
 export async function generateStaticParams() {
   const chapters = await _fetchChapters;
-  const s = chapters.map((chapter) => {
+  return chapters.map((chapter) => {
     // remove trailing "/"
-    return chapter.url.slice(1, chapter.url.length).split("/");
+    return { chapters: chapter.url.slice(1, chapter.url.length).split("/") };
   });
-  return s;
 }
 
 export default function BaseLayout({
