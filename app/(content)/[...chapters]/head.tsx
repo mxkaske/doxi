@@ -1,17 +1,11 @@
-"use client";
-
 import { allChapters } from "contentlayer/generated";
 import { notFound } from "next/navigation";
-import { cache, use } from "react";
-
-const fetchChapter = cache(async (url: string) => {
-  const chapter = allChapters.find((c) => c.url === url);
-  return chapter;
-});
 
 export default function Head({ params }: { params: { chapters: string[] } }) {
-  const data = use(fetchChapter(`/${params.chapters.join("/")}`));
-  if (!data) {
+  const chapter = allChapters.find(
+    (c) => c._raw.flattenedPath === `${params.chapters.join("/")}`
+  );
+  if (!chapter) {
     notFound();
   }
   return (
@@ -30,8 +24,7 @@ export default function Head({ params }: { params: { chapters: string[] } }) {
       />
       <meta
         property="og:image"
-        // TODO: include Chapter! if existing
-        content={`https://learn-redis-with-upstash.vercel.app/api/og.jpg?title=${data.title}`}
+        content={`https://learn-redis-with-upstash.vercel.app/api/og.jpg?title=${chapter.title}`}
       />
       <meta property="twitter:card" content="summary_large_image" />
       <meta
@@ -40,7 +33,7 @@ export default function Head({ params }: { params: { chapters: string[] } }) {
       />
       <meta
         property="twitter:image"
-        content={`https://learn-redis-with-upstash.vercel.app/api/og.jpg?title=${data.title}`}
+        content={`https://learn-redis-with-upstash.vercel.app/api/og.jpg?title=${chapter.title}`}
       />
     </>
   );

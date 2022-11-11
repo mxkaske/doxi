@@ -32,8 +32,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    ".contentlayer/generated",
-    "lib/mdx.tsz"
+    ".contentlayer/generated"
   ],
   "exclude": ["node_modules"]
 }
