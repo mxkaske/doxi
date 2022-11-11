@@ -24,7 +24,7 @@ export default function Head({ params }: { params: { chapters: string[] } }) {
       />
       <meta
         property="og:image"
-        content={`https://learn-redis-with-upstash.vercel.app/api/og.jpg?title=${chapter.title}`}
+        content={`https://learn-redis-with-upstash.vercel.app/api/og?title=${chapter.title}`}
       />
       <meta property="twitter:card" content="summary_large_image" />
       <meta
@@ -33,7 +33,7 @@ export default function Head({ params }: { params: { chapters: string[] } }) {
       />
       <meta
         property="twitter:image"
-        content={`https://learn-redis-with-upstash.vercel.app/api/og.jpg?title=${chapter.title}`}
+        content={`https://learn-redis-with-upstash.vercel.app/api/og?title=${chapter.title}`}
       />
     </>
   );
