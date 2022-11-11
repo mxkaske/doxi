@@ -1,6 +1,6 @@
 import { allChapters } from "contentlayer/generated";
 import { notFound } from "next/navigation";
-import Content from "./content";
+import Chapter from "./chapter";
 import ViewCounter from "./view-counter";
 
 export async function generateStaticParams() {
@@ -26,13 +26,10 @@ export default function ChapterSlugPage({
     <>
       {/* REMINDER: rsc_counter injects the Server Component into a Client Component! */}
       {/* https://beta.nextjs.org/docs/rendering/server-and-client-components#importing-server-components-into-client-components */}
-      <Content
+      <Chapter
         chapter={chapter}
         rsc_counter={<ViewCounter slug={params.chapters.join("/")} />}
       />
     </>
   );
 }
-
-// REMINDER: it would be nice to somehow have it in [...chapter], while
-// chapter: string[] includes all the subpages /a/b /a /b/c

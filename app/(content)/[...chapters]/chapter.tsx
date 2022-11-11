@@ -5,7 +5,7 @@ import React from "react";
 import { components } from "@/lib/mdx";
 import type { Chapter } from "contentlayer/generated";
 
-export default function Content({
+export default function Chapter({
   chapter,
   rsc_counter,
 }: {
