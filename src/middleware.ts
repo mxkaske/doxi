@@ -10,9 +10,11 @@ const handler = (req: NextRequest) => {
   try {
     // console.log(req.ip); // can be used for unique views
     const { pathname } = req.nextUrl;
-    const purpose = req.headers.get("Purpose");
+    const prefetched =
+      req.headers.get("Purpose") === "prefetch" ||
+      Boolean(req.headers.get("Next-Router-Prefetch"));
 
-    if (purpose !== "prefetch" && process.env.VERCEL_ENV !== "development") {
+    if (!prefetched && process.env.VERCEL_ENV !== "development") {
       const pathSlug = pathname.slice(1, pathname.length);
       const slug = pathSlug === "" ? "root" : pathSlug;
       // DO SOMETHING
