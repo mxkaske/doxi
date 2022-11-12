@@ -15,6 +15,7 @@
     "@upstash/qstash": "^0.1.8",
     "@upstash/redis": "^1.16.0",
     "@vercel/og": "^0.0.20",
+    "class-variance-authority": "^0.3.0",
     "classnames": "^2.3.2",
     "contentlayer": "^0.2.9",
     "date-fns": "^2.29.3",
@@ -29,6 +30,7 @@
     "typescript": "4.8.4"
   },
   "devDependencies": {
+    "@tailwindcss/forms": "^0.5.3",
     "@tailwindcss/typography": "^0.5.8",
     "@vercel/analytics": "^0.1.3",
     "autoprefixer": "^10.4.13",
