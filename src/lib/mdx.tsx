@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { IncrButton } from "@/components/incr-button";
 import { default as NextImage, ImageProps } from "next/image";
+import CacheCityWeather from "@/components/cache-city-weather";
 
 // When using Next.js, I'm getting unintented Layout Shifts.
 const Image = (props: ImageProps) => {
@@ -15,4 +16,5 @@ export const components = {
   Link: Link,
   Image: Image,
   IncrButton: IncrButton,
+  CacheCityWeather: CacheCityWeather,
 };
