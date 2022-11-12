@@ -8,7 +8,7 @@ import { Select } from "@/ui/select";
 const CITY = "Berlin,DE";
 
 async function fetchData(city: string) {
-  const res = await fetch(`/api/weather?q=${city}`);
+  const res = await fetch(`/api/weather?q=${city}`, { cache: "no-store" });
   const json = await res.json();
   console.log(json);
   return json;
