@@ -15,7 +15,7 @@ export function withCache<T extends ZodSchema>(
           const cache = await getRequestCache(result);
           if (cache) {
             return res
-              .status(200)
+              .status(200) // or status 304 here?
               .setHeader("Upstash-Redis-Cache", 1) // distinguish response
               .json(cache);
           }

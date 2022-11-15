@@ -10,17 +10,16 @@ const handler = (req: NextRequest) => {
   try {
     // console.log(req.ip); // can be used for unique views
     const { pathname } = req.nextUrl;
+    // FIXME: need a bit more work
     const prefetched =
-      req.headers.get("Purpose") === "prefetch" ||
-      Boolean(req.headers.get("Next-Router-Prefetch"));
+      req.headers.get("Purpose") === "prefetch" || // Next.js 12
+      Boolean(req.headers.get("Next-Router-Prefetch")); // Next.js 13 RSC
 
     if (!prefetched && process.env.VERCEL_ENV !== "development") {
-      const pathSlug = pathname.slice(1, pathname.length);
-      const slug = pathSlug === "" ? "root" : pathSlug;
       // DO SOMETHING
-      increaseView(slug);
+      increaseView(pathname);
       if (req.ip) {
-        increaseUniqueViews(slug, req.ip);
+        increaseUniqueViews(pathname, req.ip);
       }
     }
   } catch (e) {

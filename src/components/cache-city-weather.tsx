@@ -8,9 +8,10 @@ import { Select } from "@/ui/select";
 const CITY = "Berlin,DE";
 
 async function fetchData(city: string) {
+  // `no-store`(!) - otherwise, Next.js will cache the response (304 status)
   const res = await fetch(`/api/weather?q=${city}`, { cache: "no-store" });
   const json = await res.json();
-  console.log(json);
+  console.log(json, res.headers.get("Upstash-Redis-Cache"));
   return json;
 }
 
