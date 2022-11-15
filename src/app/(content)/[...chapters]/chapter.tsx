@@ -15,10 +15,10 @@ export default function Chapter({
   const MDXContent = useMDXComponent(chapter.body.code);
   return (
     <div>
-      <p className="text-gray-500">
+      <p className="text-sm text-gray-500">
         {chapter.readingTime} <span>&middot;</span> {rsc_counter}
       </p>
-      <div className="prose">
+      <div className="prose-code:black prose prose-strong:text-green-500 prose-em:font-light prose-code:before:content-[''] prose-code:after:content-['']">
         <h1>{chapter.title}</h1>
         <MDXContent components={components} />
       </div>

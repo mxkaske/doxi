@@ -6,51 +6,45 @@ import { usePathname } from "next/navigation";
 import React from "react";
 import cn from "classnames";
 
+function categorizeByFileDir() {
+  return allChapters.reduce((prev, curr) => {
+    if (curr._raw.sourceFileDir !== ".") {
+      if (Array.isArray(prev[curr._raw.sourceFileDir])) {
+        // @ts-ignore - push should be defined as isArray
+        prev[curr._raw.sourceFileDir].push(curr);
+      } else {
+        prev[curr._raw.sourceFileDir] = [curr];
+      }
+    } else {
+      // means this is a file!
+      prev[curr._raw.flattenedPath] = curr;
+    }
+    return prev;
+  }, {} as Record<string, Chapter[] | Chapter>);
+}
+
 export default function SideNav() {
   const pathname = usePathname();
-
-  const categorizeByFileDir = () => {
-    return allChapters.reduce((prev, curr) => {
-      if (curr._raw.sourceFileDir !== ".") {
-        if (Array.isArray(prev[curr._raw.sourceFileDir])) {
-          // @ts-ignore - push should be defined as isArray
-          prev[curr._raw.sourceFileDir].push(curr);
-        } else {
-          prev[curr._raw.sourceFileDir] = [curr];
-        }
-      } else {
-        // means this is a file!
-        prev[curr._raw.flattenedPath] = curr;
-      }
-      return prev;
-    }, {} as Record<string, Chapter[] | Chapter>);
-  };
 
   const categorized = categorizeByFileDir();
 
   return (
-    <ul>
+    <ul className="grid gap-1">
       {Object.keys(categorized).map((chapter) => {
         const data = categorized[chapter];
+        // LATER: make it recursive!
         const renderContent = () => {
           if (Array.isArray(data)) {
             const isActive = pathname?.startsWith(`/${chapter}`);
             return (
               <>
-                <p className={cn("text-sm uppercase", isActive && "font-bold")}>
+                <h5 className={cn("text-sm font-semibold capitalize")}>
                   {chapter.replace("-", " ")}
-                </p>
+                </h5>
                 {data.map(({ url, title }) => {
                   const isActive = pathname === url;
                   return (
-                    <li key={url}>
-                      <Link
-                        href={`${url}`}
-                        className={isActive ? "font-bold" : ""}
-                      >
-                        {title}
-                      </Link>
-                    </li>
+                    <ListElement key={url} {...{ url, title, isActive }} />
                   );
                 })}
               </>
@@ -58,20 +52,45 @@ export default function SideNav() {
           } else {
             const { url, title } = data;
             const isActive = pathname === url;
-            return (
-              <li key={url}>
-                <Link
-                  href={`${url}`}
-                  className={cn("text-sm uppercase", isActive && "font-bold")}
-                >
-                  {title}
-                </Link>
-              </li>
-            );
+            return <ListElement key={url} {...{ url, title, isActive }} />;
           }
         };
         return <React.Fragment key={chapter}>{renderContent()}</React.Fragment>;
       })}
     </ul>
+  );
+}
+
+function ListElement({
+  isActive,
+  title,
+  url,
+}: {
+  isActive: boolean;
+  title: string;
+  url: string;
+}) {
+  return (
+    // FIXME: strange behavior when switching `a` and `li`
+    <Link
+      href={`${url}`}
+      className={cn(
+        "-mx-2 rounded-md px-2 py-0.5",
+        isActive
+          ? "bg-green-50 text-gray-900"
+          : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
+      )}
+    >
+      <li
+        className={cn(
+          "list-inside list-disc",
+          isActive
+            ? "marker:text-green-500"
+            : "marker:text-gray-400 hover:marker:text-gray-600"
+        )}
+      >
+        {title}
+      </li>
+    </Link>
   );
 }

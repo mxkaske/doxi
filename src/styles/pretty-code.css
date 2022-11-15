@@ -1,14 +1,14 @@
-code {
+div[data-rehype-pretty-code-fragment] code {
   display: grid;
   counter-reset: line;
 }
 
-code .line {
+div[data-rehype-pretty-code-fragment] code .line {
   padding: 0 1.25rem;
   border-left: 2px solid transparent;
 }
 
-code[data-line-numbers] .line::before {
+div[data-rehype-pretty-code-fragment] code[data-line-numbers] .line::before {
   counter-increment: line;
   content: counter(line);
 
@@ -20,18 +20,18 @@ code[data-line-numbers] .line::before {
   color: gray;
 }
 
-code .word {
+div[data-rehype-pretty-code-fragment] code .word {
   background: rgba(200, 200, 255, 0.15);
   padding: 0.25rem;
   border-radius: 0.25rem;
 }
 
-code .highlighted {
+div[data-rehype-pretty-code-fragment] code .highlighted {
   background: rgba(200, 200, 255, 0.1);
-  border-left: 2px solid #16a34a !important;
+  border-left: 2px solid #22c55e !important;
 }
 
 /* OVERWRITE prose-rem default */
-pre {
+div[data-rehype-pretty-code-fragment] pre {
   padding: 1.25rem 0 !important;
 }
