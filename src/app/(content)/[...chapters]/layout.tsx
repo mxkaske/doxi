@@ -7,11 +7,13 @@ export default function BaseLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex w-full">
-      <div className="sticky top-0 w-full max-w-xs self-start border border-gray-100 p-6">
+    <div className="flex w-full flex-col md:flex-row">
+      <div className="sticky top-0 hidden w-full max-w-xs self-start p-6 md:block">
         <SideNav />
       </div>
-      <div className="overflow-auto border border-gray-100 p-6">{children}</div>
+      <div className="h-full overflow-auto border-l border-gray-100 p-6">
+        {children}
+      </div>
     </div>
   );
 }
