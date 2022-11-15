@@ -1,5 +1,6 @@
 import "@/styles/globals.css";
-import "@/styles/highlightjs.css";
+import "@/styles/pretty-code.css";
+// import "@/styles/highlightjs.css";
 import { Analytics } from "@vercel/analytics/react";
 import Link from "next/link";
 

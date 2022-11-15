@@ -1,8 +1,8 @@
 import { defineDocumentType, makeSource } from "contentlayer/source-files";
-import highlight from "rehype-highlight";
 import slug from "rehype-slug";
 import autolinkHeadings from "rehype-autolink-headings";
 import readingTime from "reading-time";
+import prettyCode from "rehype-pretty-code";
 
 export const Chapter = defineDocumentType(() => ({
   name: "Chapter",
@@ -45,7 +45,6 @@ export default makeSource({
   documentTypes: [Chapter],
   mdx: {
     rehypePlugins: [
-      highlight,
       slug,
       [
         autolinkHeadings,
@@ -55,6 +54,26 @@ export default makeSource({
             className: [
               "no-underline after:content-['#'] after:ml-1 after:text-gray-200 hover:after:text-gray-400 after:p-1",
             ],
+          },
+        },
+      ],
+      [
+        prettyCode,
+        // https://rehype-pretty-code.netlify.app/
+        {
+          theme: "github-dark",
+          onVisitLine(node: any) {
+            // Prevent lines from collapsing in `display: grid` mode, and
+            // allow empty lines to be copy/pasted
+            if (node.children.length === 0) {
+              node.children = [{ type: "text", value: " " }];
+            }
+          },
+          onVisitHighlightedLine(node: any) {
+            node.properties.className.push("highlighted");
+          },
+          onVisitHighlightedWord(node: any) {
+            node.properties.className = ["word"];
           },
         },
       ],

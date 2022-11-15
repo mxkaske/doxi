@@ -1,0 +1,37 @@
+code {
+  display: grid;
+  counter-reset: line;
+}
+
+code .line {
+  padding: 0 1.25rem;
+  border-left: 2px solid transparent;
+}
+
+code[data-line-numbers] .line::before {
+  counter-increment: line;
+  content: counter(line);
+
+  /* Other styling */
+  display: inline-block;
+  width: 1rem;
+  margin-right: 2rem;
+  text-align: right;
+  color: gray;
+}
+
+code .word {
+  background: rgba(200, 200, 255, 0.15);
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+}
+
+code .highlighted {
+  background: rgba(200, 200, 255, 0.1);
+  border-left: 2px solid #16a34a !important;
+}
+
+/* OVERWRITE prose-rem default */
+pre {
+  padding: 1.25rem 0 !important;
+}
