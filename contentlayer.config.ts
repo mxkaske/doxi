@@ -61,7 +61,7 @@ export default makeSource({
         prettyCode,
         // https://rehype-pretty-code.netlify.app/
         {
-          theme: "github-dark",
+          theme: "github-light",
           onVisitLine(node: any) {
             // Prevent lines from collapsing in `display: grid` mode, and
             // allow empty lines to be copy/pasted
