@@ -73,6 +73,7 @@ function ListElement({
 }) {
   return (
     // FIXME: strange behavior when switching `a` and `li`
+    // FIXME: add group and apply group-hover to marker!
     <Link
       href={`${url}`}
       className={cn(
