@@ -1,5 +1,5 @@
 import React from "react";
-import SideNav from "./side-nav";
+import BaseNav from "./base-nav";
 
 export default function BaseLayout({
   children,
@@ -8,9 +8,7 @@ export default function BaseLayout({
 }) {
   return (
     <div className="flex w-full flex-col md:flex-row">
-      <div className="sticky top-0 hidden w-full max-w-xs self-start p-6 md:block">
-        <SideNav />
-      </div>
+      <BaseNav />
       <div className="h-full overflow-auto border-l border-gray-100 p-6">
         {children}
       </div>

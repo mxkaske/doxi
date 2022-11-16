@@ -35,7 +35,7 @@ export default function SideNav() {
         // LATER: make it recursive!
         const renderContent = () => {
           if (Array.isArray(data)) {
-            const isActive = pathname?.startsWith(`/${chapter}`);
+            // const isActive = pathname?.startsWith(`/${chapter}`);
             return (
               <>
                 <h5 className={cn("text-sm font-semibold capitalize")}>
@@ -61,6 +61,7 @@ export default function SideNav() {
   );
 }
 
+// usePathname and isActive here instead of parent Component! Prop drill
 function ListElement({
   isActive,
   title,
@@ -86,7 +87,7 @@ function ListElement({
           "list-inside list-disc",
           isActive
             ? "marker:text-green-500"
-            : "marker:text-gray-400 hover:marker:text-gray-600"
+            : "marker:text-gray-200 hover:marker:text-gray-400"
         )}
       >
         {title}
