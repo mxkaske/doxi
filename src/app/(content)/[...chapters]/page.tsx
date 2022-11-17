@@ -1,3 +1,4 @@
+import RightSideBar from "@/components/navigation/right-side-bar";
 import { allChapters } from "contentlayer/generated";
 import { notFound } from "next/navigation";
 import Chapter from "./chapter";
@@ -23,13 +24,11 @@ export default function ChapterSlugPage({
   }
 
   return (
-    <>
-      {/* REMINDER: rsc_counter injects the Server Component into a Client Component! */}
-      {/* https://beta.nextjs.org/docs/rendering/server-and-client-components#importing-server-components-into-client-components */}
-      <Chapter
-        chapter={chapter}
-        rsc_counter={<ViewCounter slug={params.chapters.join("/")} />}
-      />
-    </>
+    // {/* REMINDER: rsc_counter injects the Server Component into a Client Component! */}
+    // {/* https://beta.nextjs.org/docs/rendering/server-and-client-components#importing-server-components-into-client-components */}
+    <Chapter
+      chapter={chapter}
+      rsc_counter={<ViewCounter slug={params.chapters.join("/")} />}
+    />
   );
 }

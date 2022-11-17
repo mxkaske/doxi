@@ -19,10 +19,10 @@ export default function Chapter({
       <p className="text-sm font-light text-gray-500">
         {chapter.readingTime} <span>&middot;</span> {rsc_counter}
       </p>
-      <div className="prose-code:black prose prose-strong:text-green-500 prose-em:font-light prose-code:before:content-[''] prose-code:after:content-[''] prose-pre:bg-gray-50">
+      <article className="prose-code:black prose prose-strong:text-green-500 prose-em:font-light prose-code:before:content-[''] prose-code:after:content-[''] prose-pre:bg-gray-50">
         <h1>{chapter.title}</h1>
         <MDXContent components={components} />
-      </div>
+      </article>
     </div>
   );
 }

@@ -3,6 +3,7 @@ import slug from "rehype-slug";
 import autolinkHeadings from "rehype-autolink-headings";
 import readingTime from "reading-time";
 import prettyCode from "rehype-pretty-code";
+import GithubSlugger from "github-slugger";
 
 export const Chapter = defineDocumentType(() => ({
   name: "Chapter",
@@ -36,6 +37,32 @@ export const Chapter = defineDocumentType(() => ({
     chapter: {
       type: "string",
       resolve: (_) => _._raw.sourceFileDir,
+    },
+    // props to https://youssefbouzekri.vercel.app/posts/contentlayer-table-of-contents
+    headings: {
+      type: "json",
+      // type: "list",
+      // of: {
+      //   fields: {
+      //     level: { type: "string" },
+      //   },
+      // },
+      resolve: async (doc) => {
+        const regXHeader = /\n(?<flag>#{1,6})\s+(?<content>.+)/g;
+        const slugger = new GithubSlugger();
+        const headings = Array.from(doc.body.raw.matchAll(regXHeader)).map(
+          ({ groups }) => {
+            const flag = groups?.flag;
+            const content = groups?.content;
+            return {
+              level: flag?.length,
+              text: content,
+              slug: content ? slugger.slug(content) : undefined,
+            };
+          }
+        );
+        return headings;
+      },
     },
   },
 }));
