@@ -22,20 +22,19 @@ export default function BaseLayout({
   }
   return (
     <div className="flex w-full flex-col md:flex-row">
-      {/* TODO: FIXME: add overflow-y */}
-      <div className="sticky top-0 hidden w-full max-w-xs self-start p-6 md:block">
+      {/* REMINDER: h-[screen] is needed for overflow-y-auto - can be calc() in case of fix header*/}
+      <aside className="sticky top-0 hidden h-screen w-full max-w-xs self-start overflow-y-auto p-6 md:block">
         <LeftSideBar />
-      </div>
+      </aside>
       <div className="sticky top-0 block border-b border-gray-100 bg-white px-6 py-3 md:hidden">
         <MobileMenu />
       </div>
       <div className="h-full flex-1 overflow-auto border-l border-r border-gray-100 p-6">
         {children}
       </div>
-      {/* TODO: FIXME: add overflow-y */}
-      <div className="sticky top-0 hidden w-full max-w-xs self-start p-6 xl:block">
+      <aside className="sticky top-0 hidden h-screen w-full max-w-xs self-start overflow-y-auto p-6 xl:block">
         <RightSideBar chapter={chapter} />
-      </div>
+      </aside>
     </div>
   );
 }
