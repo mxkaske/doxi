@@ -10,6 +10,7 @@ const link = cva(["underline"], {
         "decoration-gray-300",
         "hover:decoration-green-500",
         "hover:bg-green-50",
+        "hover:text-green-900",
       ],
     },
   },
@@ -23,8 +24,19 @@ export interface LinkProps extends NextLinkProps, VariantProps<typeof link> {
   children?: React.ReactNode;
 }
 
-const Link = ({ className, intent, ...props }: LinkProps) => {
-  return <NextLink className={link({ intent, className })} {...props} />;
+const Link = ({ className, intent, href, ...props }: LinkProps) => {
+  const internalLink = href.toString().startsWith("/");
+  const externalLinkProps = !internalLink
+    ? { target: "_blank", rel: "noreferrer" }
+    : undefined;
+  return (
+    <NextLink
+      className={link({ intent, className })}
+      href={href}
+      {...externalLinkProps}
+      {...props}
+    />
+  );
 };
 
 export default Link;

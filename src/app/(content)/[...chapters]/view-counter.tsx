@@ -1,5 +1,5 @@
 import { asyncComponent } from "@/lib/hack";
-import { getView, increaseView } from "@/lib/redis/view-counter";
+import { getView } from "@/lib/redis/view-counter";
 
 async function ViewCounter({ slug }: { slug: string }) {
   const counter = await getView(slug);

@@ -1,7 +1,6 @@
-import RightSideBar from "@/components/navigation/right-side-bar";
 import { allChapters } from "contentlayer/generated";
 import { notFound } from "next/navigation";
-import Chapter from "./chapter";
+import Content from "./content";
 import ViewCounter from "./view-counter";
 
 export async function generateStaticParams() {
@@ -26,7 +25,7 @@ export default function ChapterSlugPage({
   return (
     // {/* REMINDER: rsc_counter injects the Server Component into a Client Component! */}
     // {/* https://beta.nextjs.org/docs/rendering/server-and-client-components#importing-server-components-into-client-components */}
-    <Chapter
+    <Content
       chapter={chapter}
       rsc_counter={<ViewCounter slug={params.chapters.join("/")} />}
     />
