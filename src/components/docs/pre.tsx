@@ -36,15 +36,15 @@ export default function Pre({
     <div className="relative overflow-hidden">
       <button
         className={cn(
-          "absolute top-9 right-4 rounded-md border border-transparent p-2 hover:border-green-500",
-          !copied ? "bg-gray-200/90" : "bg-green-100/90"
+          "absolute top-9 right-4 rounded-md border border-transparent p-2 hover:border-brand-500",
+          !copied ? "bg-gray-200/90" : "bg-brand-100/90"
         )}
         onClick={onClick}
       >
         {!copied ? (
           <ClipboardDocumentIcon className="h-5 w-5 text-black" />
         ) : (
-          <ClipboardDocumentCheckIcon className="h-5 w-5 text-green-900" />
+          <ClipboardDocumentCheckIcon className="h-5 w-5 text-brand-900" />
         )}
       </button>
       <pre ref={ref} {...props}>

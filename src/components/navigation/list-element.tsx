@@ -23,7 +23,7 @@ export default function ListElement({
       className={cn(
         "-mx-2 rounded-md px-2 py-0.5",
         isActive
-          ? "bg-green-50 text-green-900"
+          ? "bg-brand-50 text-brand-900"
           : "text-gray-600 hover:bg-gray-50 hover:text-gray-900",
         className
       )}
@@ -32,7 +32,7 @@ export default function ListElement({
         className={cn(
           "list-inside list-disc",
           isActive
-            ? "marker:text-green-500"
+            ? "marker:text-brand-500"
             : "marker:text-gray-200 hover:marker:text-gray-400"
         )}
       >

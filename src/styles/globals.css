@@ -1,3 +1,42 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* TODO: add @apply to possible tags */
+
+div[data-rehype-pretty-code-fragment] code {
+  display: grid;
+  counter-reset: line;
+}
+
+div[data-rehype-pretty-code-fragment] code .line {
+  padding: 0 1.25rem;
+  border-left: 2px solid transparent;
+}
+
+div[data-rehype-pretty-code-fragment] code[data-line-numbers] .line::before {
+  counter-increment: line;
+  content: counter(line);
+
+  /* Other styling */
+  display: inline-block;
+  width: 1rem;
+  margin-right: 2rem;
+  text-align: right;
+  color: gray;
+}
+
+div[data-rehype-pretty-code-fragment] code .word {
+  @apply bg-brand-100/50;
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+}
+
+div[data-rehype-pretty-code-fragment] code .highlighted {
+  @apply border-l-2 border-brand-500 bg-brand-100/25;
+}
+
+/* OVERWRITE prose-rem default */
+div[data-rehype-pretty-code-fragment] pre {
+  padding: 1.25rem 0 !important;
+}

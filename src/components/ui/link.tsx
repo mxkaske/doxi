@@ -8,9 +8,9 @@ const link = cva(["underline"], {
       primary: [
         "text-gray-700",
         "decoration-gray-300",
-        "hover:decoration-green-500",
-        "hover:bg-green-50",
-        "hover:text-green-900",
+        "hover:decoration-brand-500",
+        "hover:bg-brand-50",
+        "hover:text-brand-900",
       ],
     },
   },
