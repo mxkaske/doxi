@@ -10,7 +10,7 @@ export default function Head({ params }: { params: { chapters: string[] } }) {
   }
   return (
     <>
-      <title>Learn Redis with Upstash</title>
+      <title>Doxi</title>
       <meta charSet="utf-8" />
       <meta name="viewport" content="width=device-width" />
       <meta
@@ -18,22 +18,16 @@ export default function Head({ params }: { params: { chapters: string[] } }) {
         content="An open source application built using the new router, server components and everything new in Next.js 13."
       />
       <meta property="og:type" content="website" />
-      <meta
-        property="og:url"
-        content="https://learn-redis-with-upstash.vercel.app"
-      />
+      <meta property="og:url" content="https://doxi.vercel.app" />
       <meta
         property="og:image"
-        content={`https://learn-redis-with-upstash.vercel.app/api/og?title=${chapter.title}`}
+        content={`https://doxi.vercel.app/api/og?title=${chapter.title}`}
       />
       <meta property="twitter:card" content="summary_large_image" />
-      <meta
-        property="twitter:url"
-        content="https://learn-redis-with-upstash.vercel.app"
-      />
+      <meta property="twitter:url" content="https://doxi.vercel.app" />
       <meta
         property="twitter:image"
-        content={`https://learn-redis-with-upstash.vercel.app/api/og?title=${chapter.title}`}
+        content={`https://doxi.vercel.app/api/og?title=${chapter.title}`}
       />
     </>
   );

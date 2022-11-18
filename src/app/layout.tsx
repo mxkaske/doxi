@@ -26,21 +26,13 @@ export default function RootLayout({
       <body className="flex min-h-screen w-full flex-col">
         <header className="flex w-full items-center justify-between space-x-4 border-b border-gray-100 py-8 px-6">
           <div>
-            <Link href="/">Learn Redis with Upstash</Link>
+            <Link href="/">Doxi</Link>
           </div>
           <div className="flex space-x-3">
-            <Link
-              href="https://github.com/mxkaske/learn-redis-with-upstash"
-              // target="_blank"
-              // rel="noreferrer"
-            >
+            <Link href="https://github.com/mxkaske/doxi">
               <GitHubIcon className="h-6 w-6 hover:text-[#6cc644]" />
             </Link>
-            <Link
-              href="https://twitter.com/mxkaske"
-              // target="_blank"
-              // rel="noreferrer"
-            >
+            <Link href="https://twitter.com/mxkaske">
               <TwitterIcon className="h-6 w-6 hover:text-[#1DA1F2]" />
             </Link>
           </div>
@@ -48,14 +40,7 @@ export default function RootLayout({
         <main className="flex flex-1 flex-col">{children}</main>
         <footer className="w-full border-t border-gray-100 px-6 py-8">
           <p className="text-center text-sm font-extralight text-gray-600">
-            created by{" "}
-            <Link
-              href="https://twitter.com/mxkaske"
-              // target="_blank"
-              // rel="noreferrer"
-            >
-              @mxkaske
-            </Link>
+            created by <Link href="https://twitter.com/mxkaske">@mxkaske</Link>
           </p>
         </footer>
         <Analytics />
