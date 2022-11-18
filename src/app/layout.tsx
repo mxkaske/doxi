@@ -1,7 +1,7 @@
 import "@/styles/globals.css";
 import "@/styles/pretty-code.css";
 import { Analytics } from "@vercel/analytics/react";
-import Link from "@/ui/link"; // FIXME: target
+import Link from "@/components/ui/link"; // FIXME: target
 import GitHubIcon from "@/icons/GitHub";
 import TwitterIcon from "@/icons/Twitter";
 import { Inter } from "@next/font/google";

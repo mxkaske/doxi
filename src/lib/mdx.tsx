@@ -1,4 +1,4 @@
-import Link from "@/ui/link";
+import Link from "@/components/ui/link";
 import { IncrButton } from "@/components/incr-button";
 import { default as NextImage, ImageProps } from "next/image";
 import CacheCityWeather from "@/components/cache-city-weather";

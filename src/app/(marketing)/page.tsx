@@ -1,5 +1,5 @@
 import { getView } from "@/lib/redis/view-counter";
-import Link from "@/ui/link";
+import Link from "@/components/ui/link";
 
 export default async function Home() {
   const counter = await getView("root");
