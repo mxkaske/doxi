@@ -1,7 +1,7 @@
 import Link from "@/components/docs/link";
 import { IncrButton } from "@/components/incr-button";
 import CacheCityWeather from "@/components/cache-city-weather";
-import Pre from "@/components/docs/pre";
+import Pre from "@/components/docs/pre-rename";
 import Image from "@/components/docs/image";
 
 export const components = {
