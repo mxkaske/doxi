@@ -26,12 +26,18 @@ export interface LinkProps extends NextLinkProps, VariantProps<typeof link> {
 
 const Link = ({ className, intent, href, ...props }: LinkProps) => {
   const internalLink = href.toString().startsWith("/");
-  const externalLinkProps = !internalLink
-    ? { target: "_blank", rel: "noreferrer" }
-    : undefined;
+  const internalHash = href.toString().startsWith("#");
+  const externalLinkProps =
+    !internalLink && !internalHash
+      ? { target: "_blank", rel: "noreferrer" }
+      : undefined;
+
+  const Anchor = internalHash ? "a" : NextLink;
+
   return (
-    <NextLink
+    <Anchor
       className={link({ intent, className })}
+      // @ts-ignore FIXME: Url only works in NextLink
       href={href}
       {...externalLinkProps}
       {...props}

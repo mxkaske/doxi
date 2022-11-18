@@ -1,6 +1,8 @@
 import { allChapters } from "contentlayer/generated";
 import { notFound } from "next/navigation";
 
+// TODO: add more infos like reading time to OG - maybe also an excerpt/description?
+
 export default function Head({ params }: { params: { chapters: string[] } }) {
   const chapter = allChapters.find(
     (c) => c._raw.flattenedPath === `${params.chapters.join("/")}`

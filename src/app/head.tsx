@@ -7,12 +7,12 @@ export default function Head() {
         name="description"
         content="Create your documentations with Next.js and MDX. Powered by Contentlayer."
       />
-      <meta
+      <link rel="icon" href="/favicon.ico" />
+      {/* <meta
         name="theme-color"
         content="#22c55e"
         // LATER: media="(prefers-color-scheme: light)" or dark!
-      />
-      <link rel="icon" href="/favicon.ico" />
+      /> */}
       {/*
       <meta property="og:type" content="website" />
       <meta property="og:url" content="https://tx.shadcn.com" />

@@ -21,7 +21,7 @@ const button = cva(["rounded-md border"], {
     },
   },
   compoundVariants: [
-    { intent: "primary", size: "medium", className: "uppercase" },
+    // { intent: "primary", size: "medium", className: "uppercase" },
   ],
   defaultVariants: {
     intent: "primary",
