@@ -8,7 +8,7 @@ export default function Image({
   return (
     <div className="relative h-64 w-full">
       {/* TODO: put a placeholder `src` in here! */}
-      <NextImage src={src || ""} alt="" fill={true} />
+      <NextImage src={src || ""} alt="" fill={true} className={"m-0"} />
     </div>
   );
 }

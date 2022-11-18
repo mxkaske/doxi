@@ -6,7 +6,8 @@ import Image from "@/components/docs/image";
 
 export const components = {
   a: Link,
-  // img: Image, // FIXME: hydration error
+  // img: Image, // FIXME: hydration error because of "p > **div** > img"
+  Image: Image,
   pre: Pre,
   IncrButton: IncrButton,
   CacheCityWeather: CacheCityWeather,
