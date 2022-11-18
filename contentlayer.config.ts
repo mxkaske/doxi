@@ -79,7 +79,7 @@ export default makeSource({
           behavior: "append",
           properties: {
             className: [
-              "no-underline after:content-['#'] after:ml-1 after:text-gray-200 hover:after:text-green-500 hover:after:bg-green-50 after:rounded-md after:p-1",
+              "no-underline after:content-['#'] ml-1 after:text-gray-200 hover:after:text-green-500 hover:after:bg-green-50 after:rounded-md after:p-1",
             ],
           },
         },
