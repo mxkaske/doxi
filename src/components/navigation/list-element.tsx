@@ -23,7 +23,7 @@ export default function ListElement({
       className={cn(
         "-mx-2 rounded-md px-2 py-0.5",
         isActive
-          ? "bg-green-50 text-gray-900"
+          ? "bg-green-50 text-green-900"
           : "text-gray-600 hover:bg-gray-50 hover:text-gray-900",
         className
       )}
