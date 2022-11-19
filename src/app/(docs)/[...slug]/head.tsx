@@ -10,9 +10,11 @@ export default function Head({ params }: { params: { slug: string[] } }) {
   if (!chapter) {
     notFound();
   }
+  // https://github.com/vercel/next.js/discussions/38256
+  const title = `Doxi - ${chapter.title}`;
   return (
     <>
-      <title>Doxi - {chapter.title}</title>
+      <title>{title}</title>
       <meta charSet="utf-8" />
       <meta name="viewport" content="width=device-width" />
       <meta name="description" content={chapter.excerpt} />
