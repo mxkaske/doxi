@@ -22,13 +22,14 @@ export default function Head({ params }: { params: { slug: string[] } }) {
       <meta property="og:url" content="https://doxi.vercel.app" />
       <meta
         property="og:image"
-        content={`https://doxi.vercel.app/api/og?title=${chapter.title}&excerpt=${chapter.excerpt}`}
+        // FIXME: maybe really add a `slug` property for fast access?
+        content={`https://doxi.vercel.app/api/og?slug=${chapter._raw.flattenedPath}`}
       />
       <meta property="twitter:card" content="summary_large_image" />
       <meta property="twitter:url" content="https://doxi.vercel.app" />
       <meta
         property="twitter:image"
-        content={`https://doxi.vercel.app/api/og?title=${chapter.title}&excerpt=${chapter.excerpt}`}
+        content={`https://doxi.vercel.app/api/og?slug=${chapter._raw.flattenedPath}`}
       />
     </>
   );

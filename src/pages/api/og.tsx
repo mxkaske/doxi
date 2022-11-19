@@ -1,4 +1,5 @@
 import { ImageResponse } from "@vercel/og";
+import { allChapters } from "contentlayer/generated";
 import { NextRequest } from "next/server";
 import colors from "tailwindcss/colors";
 // import { Inter } from "@next/font/google";
@@ -15,17 +16,28 @@ export const config = {
 export default async function handler(req: NextRequest) {
   try {
     const { searchParams } = new URL(req.url);
-    const hasTitle = searchParams.has("title");
-    const title = hasTitle
-      ? searchParams.get("title")?.slice(0, 100)
-      : "Doxi - Create your Documentation page";
-    const hasExcerpt = searchParams.has("excerpt");
-    const excerpt = hasExcerpt && searchParams.get("excerpt");
+    const hasSlug = searchParams.has("slug");
+    const slug = hasSlug && searchParams.get("slug");
+    const chapter = await allChapters.find(
+      (c) => c._raw.flattenedPath === slug
+    );
+
+    const {
+      title,
+      excerpt,
+      _raw: { sourceFileDir },
+    } = chapter || {
+      title: "Create your Documentation page",
+      excerpt: "Build with Next.js and MDX. Powered by Contentlayer.",
+      _raw: {
+        sourceFileDir: "",
+      },
+    };
 
     return new ImageResponse(
       (
         <div tw="w-full h-full flex flex-col p-8">
-          <div tw="flex-1 flex flex-col w-full border-4 border-green-300 bg-green-50 p-6">
+          <div tw="flex-1 flex flex-col w-full border-4 border-green-300 rounded-xl bg-green-50 p-6">
             <div tw="flex items-center">
               <svg
                 style={{ width: 48, height: 48 }}
@@ -60,7 +72,7 @@ export default async function handler(req: NextRequest) {
             <div tw="flex-1 flex flex-col justify-end">
               {/* TODO: dynamic chapter */}
               <p tw="text-green-500 text-xl font-medium mb-0 uppercase">
-                Chapter
+                {sourceFileDir.replaceAll("-", " ")}
               </p>
               <p tw="text-5xl text-green-900">{title}</p>
               <p tw="text-3xl text-gray-700">{excerpt}</p>
