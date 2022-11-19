@@ -5,7 +5,6 @@ import React from "react";
 import { components } from "@/lib/mdx";
 import type { Chapter } from "contentlayer/generated";
 
-// TODO: rename to Content
 export default function Content({
   chapter,
   rsc_counter,

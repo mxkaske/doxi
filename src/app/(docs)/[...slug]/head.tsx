@@ -3,9 +3,9 @@ import { notFound } from "next/navigation";
 
 // TODO: add more infos like reading time to OG - maybe also an excerpt/description?
 
-export default function Head({ params }: { params: { chapters: string[] } }) {
+export default function Head({ params }: { params: { slug: string[] } }) {
   const chapter = allChapters.find(
-    (c) => c._raw.flattenedPath === `${params.chapters.join("/")}`
+    (c) => c._raw.flattenedPath === `${params.slug.join("/")}`
   );
   if (!chapter) {
     notFound();

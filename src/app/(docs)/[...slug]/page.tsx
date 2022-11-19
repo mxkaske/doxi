@@ -5,17 +5,17 @@ import ViewCounter from "./view-counter";
 
 export async function generateStaticParams() {
   return allChapters.map((c) => ({
-    chapters: c._raw.flattenedPath.split("/"),
+    slug: c._raw.flattenedPath.split("/"),
   }));
 }
 
 export default function ChapterSlugPage({
   params,
 }: {
-  params: { chapters: string[] };
+  params: { slug: string[] };
 }) {
   const chapter = allChapters.find(
-    (c) => c._raw.flattenedPath === `${params.chapters.join("/")}`
+    (c) => c._raw.flattenedPath === `${params.slug.join("/")}`
   );
 
   if (!chapter) {
@@ -27,7 +27,7 @@ export default function ChapterSlugPage({
     // {/* https://beta.nextjs.org/docs/rendering/server-and-client-components#importing-server-components-into-client-components */}
     <Content
       chapter={chapter}
-      rsc_counter={<ViewCounter slug={params.chapters.join("/")} />}
+      rsc_counter={<ViewCounter slug={params.slug.join("/")} />}
     />
   );
 }

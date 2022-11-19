@@ -5,6 +5,7 @@ import readingTime from "reading-time";
 import prettyCode from "rehype-pretty-code";
 import GithubSlugger from "github-slugger";
 
+// DISCUSS: how to call the document? - Chapter seems to be too specific?
 export const Chapter = defineDocumentType(() => ({
   name: "Chapter",
   filePathPattern: `**/*.mdx`,
@@ -24,11 +25,11 @@ export const Chapter = defineDocumentType(() => ({
   computedFields: {
     url: {
       type: "string",
-      resolve: (chapter) => `/${chapter._raw.flattenedPath}`,
+      resolve: (_) => `/${_._raw.flattenedPath}`,
     },
     // slug: {
     //   type: "string",
-    //   resolve: (chapter) => `${chapter._raw.flattenedPath}`,
+    //   resolve: (_) => `${_._raw.flattenedPath}`,
     // },
     readingTime: {
       type: "string",
@@ -68,7 +69,7 @@ export const Chapter = defineDocumentType(() => ({
 }));
 
 export default makeSource({
-  contentDirPath: "content/chapters",
+  contentDirPath: "content/docs",
   documentTypes: [Chapter],
   mdx: {
     rehypePlugins: [

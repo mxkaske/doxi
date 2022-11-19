@@ -10,11 +10,11 @@ export default function BaseLayout({
   params,
 }: {
   children: React.ReactNode;
-  params: { chapters: string[] };
+  params: { slug: string[] };
 }) {
   // we are doing this work twice... also in page.tsx
   const chapter = allChapters.find(
-    (c) => c._raw.flattenedPath === `${params.chapters.join("/")}`
+    (c) => c._raw.flattenedPath === `${params.slug.join("/")}`
   );
 
   if (!chapter) {
