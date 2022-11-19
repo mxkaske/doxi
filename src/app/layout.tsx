@@ -4,6 +4,7 @@ import Link from "@/components/ui/link"; // FIXME: target
 import GitHubIcon from "@/icons/GitHub";
 import TwitterIcon from "@/icons/Twitter";
 import { Inter } from "@next/font/google";
+import StackIcon from "@/icons/Stack";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -25,7 +26,11 @@ export default function RootLayout({
       <body className="flex min-h-screen w-full flex-col">
         <header className="flex w-full items-center justify-between space-x-4 border-b border-gray-100 py-8 px-6">
           <div>
-            <Link href="/">Doxi</Link>
+            {/* TODO: not good enough */}
+            <Link href="/" className="flex items-center space-x-2">
+              <StackIcon className="h-5 w-5" />
+              <span>Doxi</span>
+            </Link>
           </div>
           <div className="flex space-x-3">
             <Link href="https://github.com/mxkaske/doxi">
