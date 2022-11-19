@@ -2,19 +2,31 @@ import { ImageResponse } from "@vercel/og";
 import { allChapters } from "contentlayer/generated";
 import { NextRequest } from "next/server";
 import colors from "tailwindcss/colors";
-// import { Inter } from "@next/font/google";
 
 export const config = {
   runtime: "experimental-edge",
 };
 
-// TODO: match fonts!
-// const inter = Inter({
-//   subsets: ["latin"],
-// });
+// DISCUSS: what's the best way to fetch multiple
+// TODO: check if @next/font/google is accessible
+
+const fontRegular = fetch(
+  new URL("../../fonts/Inter-Regular.ttf", import.meta.url)
+).then((res) => res.arrayBuffer());
+
+const fontExtraBold = fetch(
+  new URL("../../fonts/Inter-ExtraBold.ttf", import.meta.url)
+).then((res) => res.arrayBuffer());
+
+const fontMedium = fetch(
+  new URL("../../fonts/Inter-Medium.ttf", import.meta.url)
+).then((res) => res.arrayBuffer());
 
 export default async function handler(req: NextRequest) {
   try {
+    const fontRegularData = await fontRegular;
+    const fontExtraBoldData = await fontExtraBold;
+    const fontMediumData = await fontMedium;
     const { searchParams } = new URL(req.url);
     const hasSlug = searchParams.has("slug");
     const slug = hasSlug && searchParams.get("slug");
@@ -36,7 +48,10 @@ export default async function handler(req: NextRequest) {
 
     return new ImageResponse(
       (
-        <div tw="w-full h-full flex flex-col p-8">
+        <div
+          style={{ fontFamily: '"Inter"' }}
+          tw="w-full h-full flex flex-col p-8"
+        >
           <div tw="flex-1 flex flex-col w-full border-4 border-green-300 rounded-xl bg-green-50 p-6">
             <div tw="flex items-center">
               <svg
@@ -67,14 +82,14 @@ export default async function handler(req: NextRequest) {
                   strokeLinejoin="round"
                 />
               </svg>
-              <p tw="text-4xl ml-4 font-extrabold">Doxi</p>
+              <p tw="text-4xl ml-4 font-medium">Doxi</p>
             </div>
             <div tw="flex-1 flex flex-col justify-end">
               {/* TODO: dynamic chapter */}
               <p tw="text-green-500 text-xl font-medium mb-0 uppercase">
                 {sourceFileDir.replaceAll("-", " ")}
               </p>
-              <p tw="text-5xl text-green-900">{title}</p>
+              <p tw="text-5xl font-extrabold text-green-900">{title}</p>
               <p tw="text-3xl text-gray-700">{excerpt}</p>
             </div>
           </div>
@@ -83,6 +98,26 @@ export default async function handler(req: NextRequest) {
       {
         width: 1200,
         height: 630,
+        fonts: [
+          {
+            name: "Inter",
+            data: fontRegularData,
+            style: "normal",
+            weight: 400,
+          },
+          {
+            name: "Inter",
+            data: fontExtraBoldData,
+            style: "normal",
+            weight: 800,
+          },
+          {
+            name: "Inter",
+            data: fontMediumData,
+            style: "normal",
+            weight: 500,
+          },
+        ],
       }
     );
   } catch (error: any) {
