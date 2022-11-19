@@ -21,6 +21,12 @@ export const Chapter = defineDocumentType(() => ({
       description: "The date of the post",
       required: true,
     },
+    // REMINDER: used for og generation - name property might confuse
+    excerpt: {
+      type: "string",
+      description: "The excerpt of the post",
+      required: true,
+    },
   },
   computedFields: {
     url: {
