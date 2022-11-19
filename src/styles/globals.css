@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+/* FIXME: Nextjs 13 /app hack */
+/* https://github.com/vercel/next.js/discussions/41745 */
+@layer base {
+  [data-nextjs-scroll-focus-boundary] {
+    display: contents;
+  }
+}
+
 /* TODO: add @apply to possible tags */
 
 div[data-rehype-pretty-code-fragment] code {

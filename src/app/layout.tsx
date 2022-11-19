@@ -24,7 +24,7 @@ export default function RootLayout({
       */}
       <head />
       <body className="flex min-h-screen w-full flex-col">
-        <header className="flex w-full items-center justify-between space-x-4 border-b border-gray-100 py-8 px-6">
+        <header className="flex w-full items-center justify-between space-x-4 border-b border-gray-100 p-6">
           <div>
             {/* TODO: not good enough */}
             <Link href="/" className="flex items-center space-x-2">
@@ -42,7 +42,7 @@ export default function RootLayout({
           </div>
         </header>
         <main className="flex flex-1 flex-col">{children}</main>
-        <footer className="w-full border-t border-gray-100 px-6 py-8">
+        <footer className="w-full border-t border-gray-100 p-6">
           <p className="text-center text-sm font-extralight text-gray-600">
             created by <Link href="https://twitter.com/mxkaske">@mxkaske</Link>
           </p>
