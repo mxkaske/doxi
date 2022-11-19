@@ -12,24 +12,21 @@ export default function Head({ params }: { params: { slug: string[] } }) {
   }
   return (
     <>
-      <title>Doxi</title>
+      <title>Doxi - {chapter.title}</title>
       <meta charSet="utf-8" />
       <meta name="viewport" content="width=device-width" />
-      <meta
-        name="description"
-        content="An open source application built using the new router, server components and everything new in Next.js 13."
-      />
+      <meta name="description" content={chapter.excerpt} />
       <meta property="og:type" content="website" />
       <meta property="og:url" content="https://doxi.vercel.app" />
       <meta
         property="og:image"
-        content={`https://doxi.vercel.app/api/og?title=${chapter.title}`}
+        content={`https://doxi.vercel.app/api/og?title=${chapter.title}&excerpt=${chapter.excerpt}`}
       />
       <meta property="twitter:card" content="summary_large_image" />
       <meta property="twitter:url" content="https://doxi.vercel.app" />
       <meta
         property="twitter:image"
-        content={`https://doxi.vercel.app/api/og?title=${chapter.title}`}
+        content={`https://doxi.vercel.app/api/og?title=${chapter.title}&excerpt=${chapter.excerpt}`}
       />
     </>
   );

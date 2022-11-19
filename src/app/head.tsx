@@ -13,14 +13,15 @@ export default function Head() {
         content="#22c55e"
         // LATER: media="(prefers-color-scheme: light)" or dark!
       /> */}
-      {/*
       <meta property="og:type" content="website" />
-      <meta property="og:url" content="https://tx.shadcn.com" />
-      <meta property="og:image" content="https://tx.shadcn.com/og.jpg" />
+      <meta property="og:url" content="https://doxi.vercel.app" />
+      <meta property="og:image" content={`https://doxi.vercel.app/api/og`} />
       <meta property="twitter:card" content="summary_large_image" />
-      <meta property="twitter:url" content="https://tx.shadcn.com" />
-      <meta property="twitter:image" content="https://tx.shadcn.com/og.jpg" /> 
-      */}
+      <meta property="twitter:url" content="https://doxi.vercel.app" />
+      <meta
+        property="twitter:image"
+        content={`https://doxi.vercel.app/api/og`}
+      />
     </>
   );
 }
