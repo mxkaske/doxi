@@ -4,9 +4,11 @@ import Content from "./content";
 import ViewCounter from "./view-counter";
 
 export async function generateStaticParams() {
-  return allDocs.map((c) => ({
-    slug: c.url.split("/"),
-  }));
+  return allDocs.map((c) => {
+    // REMINDER: removing leading "/" as a url is `/chapter/slug`
+    const slug = c.url.split("/").slice(1);
+    return { slug };
+  });
 }
 
 export default function DocPage({ params }: { params: { slug: string[] } }) {
