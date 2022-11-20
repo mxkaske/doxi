@@ -10,7 +10,6 @@
     "tsc": "tsc"
   },
   "dependencies": {
-    "@heroicons/react": "^2.0.13",
     "@next/font": "^13.0.3",
     "@radix-ui/react-collapsible": "^1.0.1",
     "@types/node": "18.11.9",

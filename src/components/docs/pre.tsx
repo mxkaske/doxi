@@ -1,9 +1,7 @@
-import {
-  ClipboardDocumentCheckIcon,
-  ClipboardDocumentIcon,
-} from "@heroicons/react/24/outline";
 import React from "react";
 import cn from "classnames";
+import ClipboardDocumentIcon from "@/icons/ClipboardDocument";
+import ClipboardDocumentCheckIcon from "@/icons/ClipboardDocumentCheck";
 
 export default function Pre({
   children,

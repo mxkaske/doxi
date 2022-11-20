@@ -3,7 +3,6 @@
 import { allDocs, type Doc } from "contentlayer/generated";
 import { usePathname } from "next/navigation";
 import React from "react";
-import cn from "classnames";
 import ListElement from "./list-element";
 
 function categorizeByFileDir() {
@@ -38,7 +37,7 @@ export default function LeftSideBar() {
             // const isActive = pathname?.startsWith(`/${doc}`);
             return (
               <>
-                <h5 className={cn("font-bold capitalize")}>
+                <h5 className="font-bold capitalize">
                   {doc.replace("-", " ")}
                 </h5>
                 {data.map(({ url, title }) => {

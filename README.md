@@ -27,4 +27,5 @@ TODO:
 - [ ] add page/doc order ("001-doc-slug")
 - [ ] add voting system to determine quality of page (upstash/redis)
 - [ ] make env vars typesafer!
+- [ ] reduce dependencies to the bare minimum (e.g. cva, classnames,...)
 - [ ] ...

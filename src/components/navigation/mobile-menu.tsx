@@ -2,8 +2,9 @@
 
 import React from "react";
 import * as Collapsible from "@radix-ui/react-collapsible";
-import { Bars2Icon, XMarkIcon } from "@heroicons/react/24/solid";
 import LeftSideBar from "./left-side-bar";
+import BarsIcon from "@/icons/Bars";
+import XMarkIcon from "@/icons/XMark";
 
 export default function MobileMenu() {
   const [open, setOpen] = React.useState(false);
@@ -16,7 +17,7 @@ export default function MobileMenu() {
           {open ? (
             <XMarkIcon className="h-5 w-5" />
           ) : (
-            <Bars2Icon className="h-5 w-5" />
+            <BarsIcon className="h-5 w-5" />
           )}
         </div>
       </Collapsible.Trigger>
