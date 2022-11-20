@@ -17,12 +17,18 @@ export default function RootLayout({
   return (
     <html lang="en" className={inter.variable}>
       <body className="flex min-h-screen w-full flex-col">
-        <header className="w-full border-b border-gray-100 p-6">
-          <TopBar />
+        <header className="w-full border-b border-gray-100">
+          <div className="container mx-auto px-4 py-6 md:px-6">
+            <TopBar />
+          </div>
         </header>
-        <main className="flex flex-1 flex-col">{children}</main>
-        <footer className="w-full border-t border-gray-100 p-6">
-          <BottomBar />
+        <main className="container mx-auto flex flex-1 flex-col">
+          {children}
+        </main>
+        <footer className="w-full border-t border-gray-100">
+          <div className="container mx-auto px-4 py-6 md:px-6">
+            <BottomBar />
+          </div>
         </footer>
         <Analytics />
       </body>
