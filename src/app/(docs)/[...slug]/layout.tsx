@@ -1,4 +1,4 @@
-import { allChapters } from "contentlayer/generated";
+import { allDocs } from "contentlayer/generated";
 import { notFound } from "next/navigation";
 import React from "react";
 import RightSideBar from "@/components/navigation/right-side-bar";
@@ -13,11 +13,11 @@ export default function BaseLayout({
   params: { slug: string[] };
 }) {
   // we are doing this work twice... also in page.tsx
-  const chapter = allChapters.find(
+  const doc = allDocs.find(
     (c) => c._raw.flattenedPath === `${params.slug.join("/")}`
   );
 
-  if (!chapter) {
+  if (!doc) {
     notFound();
   }
   return (
@@ -33,7 +33,7 @@ export default function BaseLayout({
         {children}
       </div>
       <aside className="sticky top-0 hidden max-h-[calc(100vh-73px)] w-full max-w-xs items-stretch overflow-y-auto p-6 xl:block">
-        <RightSideBar chapter={chapter} />
+        <RightSideBar doc={doc} />
       </aside>
     </div>
   );

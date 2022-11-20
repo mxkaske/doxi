@@ -1,5 +1,5 @@
 import { ImageResponse } from "@vercel/og";
-import { allChapters } from "contentlayer/generated";
+import { allDocs } from "contentlayer/generated";
 import { NextRequest } from "next/server";
 import colors from "tailwindcss/colors";
 
@@ -34,15 +34,13 @@ export default async function handler(req: NextRequest) {
     // console.log({ hash, url: req.nextUrl });
     const hasSlug = searchParams.has("slug");
     const slug = hasSlug && searchParams.get("slug");
-    const chapter = await allChapters.find(
-      (c) => c._raw.flattenedPath === slug
-    );
+    const doc = await allDocs.find((c) => c._raw.flattenedPath === slug);
 
     const {
       title,
       excerpt,
       _raw: { sourceFileDir },
-    } = chapter || {
+    } = doc || {
       title: "Create your Documentation page",
       excerpt: "Build with Next.js and MDX. Powered by Contentlayer.",
       _raw: {
@@ -89,7 +87,7 @@ export default async function handler(req: NextRequest) {
               <p tw="text-4xl ml-4 font-medium">{NAME}</p>
             </div>
             <div tw="flex-1 flex flex-col justify-end">
-              {/* TODO: dynamic chapter */}
+              {/* TODO: dynamic doc */}
               <p tw="text-green-500 text-xl font-medium mb-0 uppercase">
                 {sourceFileDir.replaceAll("-", " ")}
               </p>

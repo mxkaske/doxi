@@ -24,7 +24,7 @@ TODO:
 
 - [ ] add dark mode support
 - [ ] add pagination at the bottom of the page
-- [ ] add page/chapter order ("001-chapter-slug")
+- [ ] add page/doc order ("001-doc-slug")
 - [ ] add voting system to determine quality of page (upstash/redis)
 - [ ] make env vars typesafer!
 - [ ] ...

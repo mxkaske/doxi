@@ -26,6 +26,7 @@
       "@/components/*": ["./src/components/*"],
       "@/styles/*": ["./src/styles/*"],
       "@/icons/*": ["./src/icons/*"]
+      // TODO: contentlayer src directory
     }
   },
   "include": [

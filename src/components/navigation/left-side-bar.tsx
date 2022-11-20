@@ -1,14 +1,13 @@
 "use client";
 
-import { allChapters, type Chapter } from "contentlayer/generated";
-import Link from "next/link";
+import { allDocs, type Doc } from "contentlayer/generated";
 import { usePathname } from "next/navigation";
 import React from "react";
 import cn from "classnames";
 import ListElement from "./list-element";
 
 function categorizeByFileDir() {
-  return allChapters.reduce((prev, curr) => {
+  return allDocs.reduce((prev, curr) => {
     if (curr._raw.sourceFileDir !== ".") {
       if (Array.isArray(prev[curr._raw.sourceFileDir])) {
         // @ts-ignore - push should be defined as isArray
@@ -21,7 +20,7 @@ function categorizeByFileDir() {
       prev[curr._raw.flattenedPath] = curr;
     }
     return prev;
-  }, {} as Record<string, Chapter[] | Chapter>);
+  }, {} as Record<string, Doc[] | Doc>);
 }
 
 export default function LeftSideBar() {
@@ -31,16 +30,16 @@ export default function LeftSideBar() {
 
   return (
     <ul className="grid gap-2">
-      {Object.keys(categorized).map((chapter) => {
-        const data = categorized[chapter];
+      {Object.keys(categorized).map((doc) => {
+        const data = categorized[doc];
         // LATER: make it recursive!
         const renderContent = () => {
           if (Array.isArray(data)) {
-            // const isActive = pathname?.startsWith(`/${chapter}`);
+            // const isActive = pathname?.startsWith(`/${doc}`);
             return (
               <>
                 <h5 className={cn("font-bold capitalize")}>
-                  {chapter.replace("-", " ")}
+                  {doc.replace("-", " ")}
                 </h5>
                 {data.map(({ url, title }) => {
                   const isActive = pathname === url;
@@ -56,7 +55,7 @@ export default function LeftSideBar() {
             return <ListElement key={url} {...{ url, title, isActive }} />;
           }
         };
-        return <React.Fragment key={chapter}>{renderContent()}</React.Fragment>;
+        return <React.Fragment key={doc}>{renderContent()}</React.Fragment>;
       })}
     </ul>
   );

@@ -2,7 +2,7 @@
 
 import React from "react";
 import cn from "classnames";
-import type { Chapter } from ".contentlayer/generated";
+import type { Doc } from ".contentlayer/generated";
 import ListElement from "./list-element";
 
 type Item = {
@@ -11,8 +11,8 @@ type Item = {
   slug?: string;
 };
 
-export default function RightSideBar({ chapter }: { chapter: Chapter }) {
-  const headings = chapter.headings as Item[];
+export default function RightSideBar({ doc }: { doc: Doc }) {
+  const headings = doc.headings as Item[];
   const activeSlug = useActiveSlug(headings.map((h) => h.slug!));
 
   return (
