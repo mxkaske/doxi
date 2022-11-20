@@ -3,58 +3,40 @@
 import { allDocs, type Doc } from "contentlayer/generated";
 import { usePathname } from "next/navigation";
 import React from "react";
+import { PathSegments } from "src/contentlayer/utils";
 import ListElement from "./list-element";
 
-function categorizeByFileDir() {
+// TODO: currently, only mdx files with a sourceFileDir !== "." are allowed
+function docsTree() {
   return allDocs.reduce((prev, curr) => {
-    if (curr._raw.sourceFileDir !== ".") {
-      if (Array.isArray(prev[curr._raw.sourceFileDir])) {
-        // @ts-ignore - push should be defined as isArray
-        prev[curr._raw.sourceFileDir].push(curr);
-      } else {
-        prev[curr._raw.sourceFileDir] = [curr];
-      }
+    const pathSegments = curr.pathSegments as PathSegments;
+    const chapter = pathSegments[0].pathName.replace("-", " ");
+    if (Array.isArray(prev[chapter])) {
+      prev[chapter].push(curr);
     } else {
-      // means this is a file!
-      prev[curr._raw.flattenedPath] = curr;
+      prev[chapter] = [curr];
     }
     return prev;
-  }, {} as Record<string, Doc[] | Doc>);
+  }, {} as Record<string, Doc[]>);
 }
 
 export default function LeftSideBar() {
   const pathname = usePathname();
-
-  const categorized = categorizeByFileDir();
+  const tree = docsTree();
 
   return (
     <ul className="grid gap-2">
-      {Object.keys(categorized).map((doc) => {
-        const data = categorized[doc];
-        // LATER: make it recursive!
-        const renderContent = () => {
-          if (Array.isArray(data)) {
-            // const isActive = pathname?.startsWith(`/${doc}`);
-            return (
-              <>
-                <h5 className="font-bold capitalize">
-                  {doc.replace("-", " ")}
-                </h5>
-                {data.map(({ url, title }) => {
-                  const isActive = pathname === url;
-                  return (
-                    <ListElement key={url} {...{ url, title, isActive }} />
-                  );
-                })}
-              </>
-            );
-          } else {
-            const { url, title } = data;
-            const isActive = pathname === url;
-            return <ListElement key={url} {...{ url, title, isActive }} />;
-          }
-        };
-        return <React.Fragment key={doc}>{renderContent()}</React.Fragment>;
+      {Object.keys(tree).map((chapter) => {
+        const data = tree[chapter];
+        return (
+          <React.Fragment key={chapter}>
+            <h5 className="font-bold capitalize">{chapter}</h5>
+            {data.map(({ url, title }) => {
+              const isActive = pathname === url;
+              return <ListElement key={url} {...{ url, title, isActive }} />;
+            })}
+          </React.Fragment>
+        );
       })}
     </ul>
   );

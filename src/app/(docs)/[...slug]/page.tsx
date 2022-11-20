@@ -5,14 +5,12 @@ import ViewCounter from "./view-counter";
 
 export async function generateStaticParams() {
   return allDocs.map((c) => ({
-    slug: c._raw.flattenedPath.split("/"),
+    slug: c.url.split("/"),
   }));
 }
 
 export default function DocPage({ params }: { params: { slug: string[] } }) {
-  const doc = allDocs.find(
-    (c) => c._raw.flattenedPath === `${params.slug.join("/")}`
-  );
+  const doc = allDocs.find((c) => c.url === `/${params.slug.join("/")}`);
 
   if (!doc) {
     notFound();

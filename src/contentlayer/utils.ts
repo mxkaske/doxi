@@ -5,7 +5,7 @@ import GithubSlugger from "github-slugger";
 
 export const contentDirPath = "content/docs";
 
-// DISCUSS: this will be the same for all files
+// DISCUSS: this will be the same for all files as the date will be the build time
 export const getLastEditedDate = async (doc: DocumentGen): Promise<Date> => {
   const stats = await fs.stat(
     path.join(contentDirPath, doc._raw.sourceFilePath)
@@ -38,9 +38,15 @@ export const getHeadings = async (doc: DocumentGen): Promise<DocHeading[]> => {
   return headings;
 };
 
-// TODO: pathSegments
+export type PathSegments = {
+  order: number;
+  pathName: string;
+}[];
+
 // props to https://github.com/contentlayerdev/website/blob/main/src/contentlayer/document/Doc.ts
-export const getPathSegments = async (doc: DocumentGen) => {
+export const getPathSegments = async (
+  doc: DocumentGen
+): Promise<PathSegments> => {
   return doc._raw.flattenedPath.split("/").map((dirName) => {
     const re = /^((\d+)-)?(.*)$/;
     const [, , orderStr, pathName] = dirName.match(re) ?? [];
@@ -49,5 +55,10 @@ export const getPathSegments = async (doc: DocumentGen) => {
   });
 };
 
-// Because of the "001-", we will need to have
-// getUrl and getSlug here as well!
+export const getUrl = async (doc: DocumentGen) => {
+  return doc._raw.flattenedPath.split("/").reduce((prev, curr) => {
+    const re = /^((\d+)-)?(.*)$/;
+    const [, , orderStr, pathName] = curr.match(re) ?? [];
+    return `${prev}/${pathName}`;
+  }, "");
+};

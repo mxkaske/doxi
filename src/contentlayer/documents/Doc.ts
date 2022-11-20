@@ -1,6 +1,11 @@
 import { defineDocumentType } from "contentlayer/source-files";
 import readingTime from "reading-time";
-import { getHeadings, getLastEditedDate } from "../utils";
+import {
+  getHeadings,
+  getLastEditedDate,
+  getPathSegments,
+  getUrl,
+} from "../utils";
 
 export const Doc = defineDocumentType(() => ({
   name: "Doc",
@@ -27,12 +32,8 @@ export const Doc = defineDocumentType(() => ({
   computedFields: {
     url: {
       type: "string",
-      resolve: (_) => `/${_._raw.flattenedPath}`,
+      resolve: (_) => getUrl(_),
     },
-    // slug: {
-    //   type: "string",
-    //   resolve: (_) => `${_._raw.flattenedPath}`,
-    // },
     lastEdited: {
       type: "date",
       resolve: (_) => getLastEditedDate(_),
@@ -41,13 +42,13 @@ export const Doc = defineDocumentType(() => ({
       type: "string",
       resolve: (_) => readingTime(_.body.raw).text,
     },
-    chapter: {
-      type: "string",
-      resolve: (_) => _._raw.sourceFileDir,
-    },
     headings: {
       type: "json",
       resolve: (_) => getHeadings(_),
+    },
+    pathSegments: {
+      type: "json",
+      resolve: (_) => getPathSegments(_),
     },
   },
 }));

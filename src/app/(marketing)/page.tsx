@@ -4,7 +4,7 @@ import GettingStarted from "./getting-started";
 // TODO: add tiles with features on items
 
 export default async function Home() {
-  const counter = await getView("root");
+  // const counter = await getView("root");
   const NAME = process.env.NEXT_PUBLIC_DOCUMENTATION_NAME;
   return (
     <div className="container mx-auto space-y-12 px-6 py-24">
@@ -17,9 +17,6 @@ export default async function Home() {
           <span className="text-[#7C3AED]">Contentlayer</span>.
         </h1>
         <GettingStarted />
-      </div>
-      <div className="text-center">
-        <p className="text-sm font-extralight">View Counter: {counter}</p>
       </div>
     </div>
   );

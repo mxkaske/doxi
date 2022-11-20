@@ -6,9 +6,7 @@ import { notFound } from "next/navigation";
 export default function Head({ params }: { params: { slug: string[] } }) {
   const URL = process.env.NEXT_PUBLICH_DOCUMENTATION_URL;
   const NAME = process.env.NEXT_PUBLIC_DOCUMENTATION_NAME;
-  const doc = allDocs.find(
-    (c) => c._raw.flattenedPath === `${params.slug.join("/")}`
-  );
+  const doc = allDocs.find((c) => c.url === `/${params.slug.join("/")}`);
   if (!doc) {
     notFound();
   }

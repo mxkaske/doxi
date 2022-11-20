@@ -13,9 +13,7 @@ export default function BaseLayout({
   params: { slug: string[] };
 }) {
   // we are doing this work twice... also in page.tsx
-  const doc = allDocs.find(
-    (c) => c._raw.flattenedPath === `${params.slug.join("/")}`
-  );
+  const doc = allDocs.find((c) => c.url === `/${params.slug.join("/")}`);
 
   if (!doc) {
     notFound();
