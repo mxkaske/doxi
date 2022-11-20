@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 // TODO: add more infos like reading time to OG - maybe also an excerpt/description?
 
 export default function Head({ params }: { params: { slug: string[] } }) {
-  const URL = process.env.NEXT_PUBLIC_VERCEL_URL;
+  const URL = process.env.NEXT_PUBLICH_DOCUMENTATION_URL;
   const NAME = process.env.NEXT_PUBLIC_DOCUMENTATION_NAME;
   const chapter = allChapters.find(
     (c) => c._raw.flattenedPath === `${params.slug.join("/")}`

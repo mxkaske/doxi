@@ -1,5 +1,5 @@
 export default function Head() {
-  const URL = process.env.NEXT_PUBLIC_VERCEL_URL;
+  const URL = process.env.NEXT_PUBLICH_DOCUMENTATION_URL;
   const NAME = process.env.NEXT_PUBLIC_DOCUMENTATION_NAME;
   return (
     <>
