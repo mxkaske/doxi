@@ -24,10 +24,14 @@ const fontMedium = fetch(
 
 export default async function handler(req: NextRequest) {
   try {
+    const NAME = process.env.NEXT_PUBLIC_DOCUMENTATION_NAME;
     const fontRegularData = await fontRegular;
     const fontExtraBoldData = await fontExtraBold;
     const fontMediumData = await fontMedium;
-    const { searchParams } = new URL(req.url);
+    const { searchParams, hash } = new URL(req.url);
+    // TODO: if possible, detect the haxsh and highlight it!
+    // The '#' can only be read on the client - **not** server.
+    // console.log({ hash, url: req.nextUrl });
     const hasSlug = searchParams.has("slug");
     const slug = hasSlug && searchParams.get("slug");
     const chapter = await allChapters.find(
@@ -82,7 +86,7 @@ export default async function handler(req: NextRequest) {
                   strokeLinejoin="round"
                 />
               </svg>
-              <p tw="text-4xl ml-4 font-medium">Doxi</p>
+              <p tw="text-4xl ml-4 font-medium">{NAME}</p>
             </div>
             <div tw="flex-1 flex flex-col justify-end">
               {/* TODO: dynamic chapter */}

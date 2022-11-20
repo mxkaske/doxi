@@ -12,7 +12,7 @@ export default function MobileMenu() {
       {/* asChild will add a `appearance: button` */}
       <Collapsible.Trigger asChild className="cursor-pointer appearance-none">
         <div className="flex justify-between font-light">
-          <span>Content</span>
+          <span>Documentation</span>
           {open ? (
             <XMarkIcon className="h-5 w-5" />
           ) : (

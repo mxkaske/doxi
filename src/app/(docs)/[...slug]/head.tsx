@@ -4,6 +4,8 @@ import { notFound } from "next/navigation";
 // TODO: add more infos like reading time to OG - maybe also an excerpt/description?
 
 export default function Head({ params }: { params: { slug: string[] } }) {
+  const URL = process.env.NEXT_PUBLIC_VERCEL_URL;
+  const NAME = process.env.NEXT_PUBLIC_DOCUMENTATION_NAME;
   const chapter = allChapters.find(
     (c) => c._raw.flattenedPath === `${params.slug.join("/")}`
   );
@@ -11,7 +13,7 @@ export default function Head({ params }: { params: { slug: string[] } }) {
     notFound();
   }
   // https://github.com/vercel/next.js/discussions/38256
-  const title = `Doxi - ${chapter.title}`;
+  const title = `${NAME} - ${chapter.title}`;
   return (
     <>
       <title>{title}</title>
@@ -19,17 +21,16 @@ export default function Head({ params }: { params: { slug: string[] } }) {
       <meta name="viewport" content="width=device-width" />
       <meta name="description" content={chapter.excerpt} />
       <meta property="og:type" content="website" />
-      <meta property="og:url" content="https://doxi.vercel.app" />
+      <meta property="og:url" content={`${URL}${chapter.url}`} />
       <meta
         property="og:image"
-        // FIXME: maybe really add a `slug` property for fast access?
-        content={`https://doxi.vercel.app/api/og?slug=${chapter._raw.flattenedPath}`}
+        content={`${URL}/api/og?slug=${chapter._raw.flattenedPath}`}
       />
       <meta property="twitter:card" content="summary_large_image" />
-      <meta property="twitter:url" content="https://doxi.vercel.app" />
+      <meta property="twitter:url" content={`${URL}${chapter.url}`} />
       <meta
         property="twitter:image"
-        content={`https://doxi.vercel.app/api/og?slug=${chapter._raw.flattenedPath}`}
+        content={`${URL}/api/og?slug=${chapter._raw.flattenedPath}`}
       />
     </>
   );

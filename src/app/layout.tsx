@@ -1,10 +1,8 @@
 import "@/styles/globals.css";
 import Analytics from "@/components/analytics";
-import Link from "@/components/ui/link"; // FIXME: target
-import GitHubIcon from "@/icons/GitHub";
-import TwitterIcon from "@/icons/Twitter";
 import { Inter } from "@next/font/google";
-import StackIcon from "@/icons/Stack";
+import TopBar from "@/components/navigation/top-bar";
+import BottomBar from "@/components/navigation/bottom-bar";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -18,34 +16,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={inter.variable}>
-      {/*
-        <head /> will contain the components returned by the nearest parent
-        head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
-      */}
-      <head />
       <body className="flex min-h-screen w-full flex-col">
-        <header className="flex w-full items-center justify-between space-x-4 border-b border-gray-100 p-6">
-          <div>
-            {/* TODO: not good enough */}
-            <Link href="/" className="flex items-center space-x-2">
-              <StackIcon className="h-5 w-5" />
-              <span>Doxi</span>
-            </Link>
-          </div>
-          <div className="flex space-x-3">
-            <Link href="https://github.com/mxkaske/doxi">
-              <GitHubIcon className="h-6 w-6 hover:text-[#6cc644]" />
-            </Link>
-            <Link href="https://twitter.com/mxkaske">
-              <TwitterIcon className="h-6 w-6 hover:text-[#1DA1F2]" />
-            </Link>
-          </div>
+        <header className="w-full border-b border-gray-100 p-6">
+          <TopBar />
         </header>
         <main className="flex flex-1 flex-col">{children}</main>
         <footer className="w-full border-t border-gray-100 p-6">
-          <p className="text-center text-sm font-extralight text-gray-600">
-            created by <Link href="https://twitter.com/mxkaske">@mxkaske</Link>
-          </p>
+          <BottomBar />
         </footer>
         <Analytics />
       </body>
