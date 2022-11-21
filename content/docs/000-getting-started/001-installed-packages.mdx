@@ -1,19 +1,43 @@
 ---
 title: Installed Packages
 date: 2021-12-24
-excerpt: A short description about Installed Packages and why...
+excerpt: Overview of the main dependencies.
 ---
 
-Ullamco et nostrud magna commodo nostrud occaecat quis pariatur id ipsum. Ipsum
-consequat enim id excepteur consequat nostrud esse esse fugiat dolore.
-Reprehenderit occaecat exercitation non cupidatat in eiusmod laborum ex eu
-fugiat aute culpa pariatur. Irure elit proident consequat veniam minim ipsum ex
-pariatur.
+## What is installed?
 
-> This is a blockquote!
+The goal of Doxi is to not bound you to your favorite packages. But it still needs some packages to work with. The main packages are:
 
-Mollit nisi cillum exercitation minim officia velit laborum non Lorem
-adipisicing dolore. Labore commodo consectetur commodo velit adipisicing irure
-dolore dolor reprehenderit aliquip. Reprehenderit cillum mollit eiusmod
-excepteur elit ipsum aute pariatur in. Cupidatat ex culpa velit culpa ad non
-labore exercitation irure laborum.
+- [Next.js](https://nextjs.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Contentlayer](https://www.contentlayer.dev/)
+
+### Why Next.js?
+
+What a question. It's by far the most used framework for React. Providing SSR, SSG, ISR and much more. Make Doxi your own.
+
+### Why Contentlayer?
+
+This one might not be obvious if you are reading it for the first time. But I guarantee you, that's what you wish you knew already.
+
+Contentlayer validates your `content/docs` files and transforms your content into type-safe JSON. Doxi computes fields such as `readingTime`, `url`, `pathSegments` within the generated document.
+
+In the future, Contentlayer will support other "Content Sources" than `mdx`/`markdown`, like Contentful, Notion,... Let's bet on it!
+
+### Why Tailwind CSS?
+
+It's one of the largest adapted CSS utility frameworks and is known by a large number of people. It helped me to develop Doxi and is just the way to go for fast implementation. Don't think of class names!
+
+Doxi includes [`tailwind-merge`](https://github.com/dcastil/tailwind-merge) to effectively merge utility classes without style conflicts. Also, in avoids the fight between `classnames` and `clx`. Just add what you wish.
+
+## What else?
+
+> Check out the [`package.json`](https://github.com/mxkaske/doxi/blob/main/package.json) for all the packages.
+
+### MDX Plugins
+
+Most of the other packages supports transform the content. Doxi uses [rehype](https://github.com/rehypejs/rehype) plugins to:
+
+- prettify the code blocks ([`rehype-pretty-code`](https://rehype-pretty-code.netlify.app/))
+- add ids with slugs to the headings ([`rehype-slug`](https://github.com/rehypejs/rehype-slug))
+- add **#** links to headings ([`rehype-autolink-headings`](https://github.com/rehypejs/rehype-autolink-headings))
