@@ -23,10 +23,10 @@ export default function ListElement({
         isActive
           ? "bg-brand-50 text-brand-900"
           : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
-      } ${level === 2 ? "ml-3" : level === 3 ? "ml-6" : "ml-0"}`}
+      } ${level === 3 ? "ml-3" : level === 4 ? "ml-6" : "ml-0"}`} // TODO: more levels!
     >
       <li
-        className={`list-inside list-disc ${
+        className={`ml-4 list-outside list-disc ${
           isActive
             ? "marker:text-brand-500"
             : "marker:text-gray-200 hover:marker:text-gray-400"

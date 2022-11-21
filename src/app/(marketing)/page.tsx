@@ -1,12 +1,19 @@
+import { Button } from "@/components/ui/button";
 import { allDocs } from "contentlayer/generated";
+import { PathSegments } from "src/contentlayer/utils";
+import ForkNow from "./fork-now";
 import GettingStarted from "./getting-started";
 import Tile from "./tile";
 
-// TODO: add tiles with features on items
-
 export default async function Home() {
   const NAME = process.env.NEXT_PUBLIC_DOCUMENTATION_NAME;
-  const docs = allDocs.filter((d) => d.url.startsWith("/data-types"));
+  const docs = allDocs
+    .filter((d) => d.url.startsWith("/features"))
+    .sort((a, b) => {
+      const pathA = a.pathSegments as PathSegments;
+      const pathB = b.pathSegments as PathSegments;
+      return pathA[1].order > pathB[1].order ? 1 : -1;
+    });
   return (
     <div className="container mx-auto space-y-12 px-6 py-24">
       <div className="mx-auto max-w-2xl text-center">
@@ -17,7 +24,10 @@ export default async function Home() {
           <span className="text-[#FCB32C]">MDX</span>. Powered by{" "}
           <span className="text-[#7C3AED]">Contentlayer</span>.
         </h1>
-        <GettingStarted />
+        <div className="space-x-4">
+          <GettingStarted />
+          <ForkNow />
+        </div>
       </div>
       <div className="mx-auto grid max-w-4xl grid-cols-1 gap-6 md:grid-cols-2">
         {docs.map(({ url, title, excerpt }) => (
