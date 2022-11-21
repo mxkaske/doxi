@@ -16,7 +16,7 @@ export default function Content({ doc }: { doc: Doc }) {
         <h1>{doc.title}</h1>
         <MDXContent components={components} />
       </article>
-      <p className="mt-6 text-sm font-extralight text-gray-500">
+      <p className="mb-2 mt-16 text-sm font-extralight text-gray-500">
         last edited: {new Date(doc.lastEdited).toLocaleDateString("en-US")}
       </p>
     </div>

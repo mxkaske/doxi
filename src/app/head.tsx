@@ -7,7 +7,7 @@ export default function Head() {
       <meta content="width=device-width, initial-scale=1" name="viewport" />
       <meta
         name="description"
-        content="Create your documentations with Next.js and MDX. Powered by Contentlayer."
+        content="Create your Documentation with Next.js and MDX. Powered by Contentlayer."
       />
       <link
         rel="icon"

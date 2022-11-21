@@ -37,7 +37,7 @@ export default async function handler(req: NextRequest) {
     const doc = await allDocs.find((c) => c._raw.flattenedPath === slug);
 
     const { title, excerpt, pathSegments } = doc || {
-      title: "Create your Documentation page",
+      title: "Create your Documentation",
       excerpt: "Build with Next.js and MDX. Powered by Contentlayer.",
       pathSegments: [],
     };

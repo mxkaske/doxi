@@ -4,14 +4,35 @@ date: 2021-12-24
 excerpt: Focus on the content. Not on its style.
 ---
 
-Ullamco et nostrud magna commodo nostrud occaecat quis pariatur id ipsum. Ipsum
-consequat enim id excepteur consequat nostrud esse esse fugiat dolore.
-Reprehenderit occaecat exercitation non cupidatat in eiusmod laborum ex eu
-fugiat aute culpa pariatur. Irure elit proident consequat veniam minim ipsum ex
-pariatur.
+## Prose
 
-Ullamco et nostrud magna commodo nostrud occaecat quis pariatur id ipsum. Ipsum
-consequat enim id excepteur consequat nostrud esse esse fugiat dolore.
-Reprehenderit occaecat exercitation non cupidatat in eiusmod laborum ex eu
-fugiat aute culpa pariatur. Irure elit proident consequat veniam minim ipsum ex
-pariatur.
+Doxi includes the [`@tailwindcss/typography`](https://tailwindcss.com/docs/typography-plugin) package to easily style the markdown content. Besides the default `prose` styles, Doxi modifies basic elements like `prose-em`, `prose-blockquote` to fit the `brand` design.
+
+## MDX Components
+
+By default, Doxi include overwrites for `a` and `pre` HTML tags:
+
+```ts {6,7}
+// /src/lib/mdx.tsx
+import Link from "@/components/docs/link";
+import Pre from "@/components/docs/pre";
+
+export const components = {
+  a: Link, // support client side transition `next/link`
+  pre: Pre, // add 'copy & paste'-button
+  // ...
+};
+```
+
+Extend the `components` object with your `JSX` Components to make use of it in your `mdx` content.
+
+## Pretty Code Blocks
+
+Big props go to the [`rehype-pretty-code`](https://github.com/atomiks/rehype-pretty-code) library that includes lots of syntax highlighting. Check out the [docs](https://rehype-pretty-code.netlify.app/) to learn more.
+
+Here is a quick overview you can use with Doxi:
+
+- word highlighting
+- line highlighting
+- number of lines
+- themes

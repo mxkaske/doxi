@@ -16,10 +16,9 @@ export default function ListElement({
 
   return (
     // FIXME: strange behavior when switching `a` and `li`
-    // FIXME: add group and apply group-hover to marker!
     <Anchor
       href={`${url}`}
-      className={`-mx-2 rounded-md px-2 py-0.5 ${
+      className={`group -mx-2 rounded-md px-2 py-0.5 ${
         isActive
           ? "bg-brand-50 text-brand-900"
           : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
@@ -29,7 +28,7 @@ export default function ListElement({
         className={`ml-4 list-outside list-disc ${
           isActive
             ? "marker:text-brand-500"
-            : "marker:text-gray-200 hover:marker:text-gray-400"
+            : "marker:text-gray-200 group-hover:marker:text-gray-400"
         }`}
       >
         {title}

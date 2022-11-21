@@ -22,7 +22,6 @@ export default function RootLayout({
             <TopBar />
           </div>
         </header>
-        {/* removed: mx-auto container */}
         <main className="flex flex-1 flex-col">{children}</main>
         <footer className="w-full border-t border-gray-100">
           <div className="container mx-auto px-4 py-6 md:px-6">
