@@ -27,11 +27,11 @@ export default function LeftSideBar() {
   return (
     <ul className="grid gap-2">
       {Object.keys(tree).map((chapter) => {
-        const data = tree[chapter];
+        const doc = tree[chapter];
         return (
           <React.Fragment key={chapter}>
             <h5 className="font-bold capitalize">{chapter}</h5>
-            {data.map(({ url, title }) => {
+            {doc.map(({ url, title }) => {
               const isActive = pathname === url;
               return <ListElement key={url} {...{ url, title, isActive }} />;
             })}

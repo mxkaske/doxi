@@ -1,39 +1,15 @@
 import React from "react";
-import { cva, type VariantProps } from "class-variance-authority";
-
-const select = cva(["rounded-md border"], {
-  variants: {
-    intent: {
-      primary: ["border-gray-300", "text-gray-800"],
-    },
-    _size: {
-      small: ["text-sm", "py-1", "pl-2 pr-7"],
-      medium: ["text-base", "py-2", "pl-4 pr-9"],
-    },
-    fullWidth: {
-      true: ["w-full"],
-      false: [],
-    },
-  },
-  defaultVariants: {
-    intent: "primary",
-    _size: "small",
-  },
-});
+import { twMerge } from "tailwind-merge";
 
 export interface SelectProps
-  extends React.SelectHTMLAttributes<HTMLSelectElement>,
-    VariantProps<typeof select> {}
+  extends React.SelectHTMLAttributes<HTMLSelectElement> {}
 
-export const Select: React.FC<SelectProps> = ({
-  className,
-  intent,
-  _size,
-  fullWidth,
-  ...props
-}) => (
+export const Select: React.FC<SelectProps> = ({ className, ...props }) => (
   <select
-    className={select({ intent, _size, fullWidth, className })}
+    className={twMerge(
+      "rounded-md border border-gray-300 py-1 pl-2 pr-7 text-sm text-gray-800",
+      className
+    )}
     {...props}
   />
 );

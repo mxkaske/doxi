@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import cn from "classnames";
 import type { Doc } from ".contentlayer/generated";
 import ListElement from "./list-element";
 
@@ -27,11 +26,7 @@ export default function RightSideBar({ doc }: { doc: Doc }) {
             url={`#${slug}`}
             title={text}
             isActive={slug === activeSlug}
-            // DISCUSS: about style
-            className={cn({
-              "ml-3": level === 2,
-              "ml-6": level === 3,
-            })}
+            level={level}
           />
         );
       })}

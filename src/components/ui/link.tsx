@@ -1,30 +1,13 @@
 import NextLink, { type LinkProps as NextLinkProps } from "next/link";
 import React from "react";
-import { cva, type VariantProps } from "class-variance-authority";
+import { twMerge } from "tailwind-merge";
 
-const link = cva(["underline"], {
-  variants: {
-    intent: {
-      primary: [
-        "text-gray-700",
-        "decoration-gray-300",
-        "hover:decoration-brand-500",
-        "hover:bg-brand-50",
-        "hover:text-brand-900",
-      ],
-    },
-  },
-  defaultVariants: {
-    intent: "primary",
-  },
-});
-
-export interface LinkProps extends NextLinkProps, VariantProps<typeof link> {
+export interface LinkProps extends NextLinkProps {
   className?: string;
   children?: React.ReactNode;
 }
 
-const Link = ({ className, intent, href, ...props }: LinkProps) => {
+const Link = ({ className, href, ...props }: LinkProps) => {
   const internalLink = href.toString().startsWith("/");
   const internalHash = href.toString().startsWith("#");
   const externalLinkProps =
@@ -36,7 +19,10 @@ const Link = ({ className, intent, href, ...props }: LinkProps) => {
 
   return (
     <Anchor
-      className={link({ intent, className })}
+      className={twMerge(
+        "text-gray-700 underline decoration-gray-300 hover:bg-brand-50 hover:text-brand-900 hover:decoration-brand-500",
+        className
+      )}
       // @ts-ignore FIXME: Url only works in NextLink
       href={href}
       {...externalLinkProps}

@@ -1,5 +1,4 @@
 import React from "react";
-import cn from "classnames";
 import ClipboardDocumentIcon from "@/icons/ClipboardDocument";
 import ClipboardDocumentCheckIcon from "@/icons/ClipboardDocumentCheck";
 
@@ -33,10 +32,9 @@ export default function Pre({
   return (
     <div className="relative overflow-hidden">
       <button
-        className={cn(
-          "absolute top-9 right-4 rounded-md border border-transparent p-2 hover:border-brand-500",
+        className={`absolute top-9 right-4 rounded-md border border-transparent p-2 hover:border-brand-500 ${
           !copied ? "bg-gray-200/90" : "bg-brand-100/90"
-        )}
+        }`}
         onClick={onClick}
       >
         {!copied ? (

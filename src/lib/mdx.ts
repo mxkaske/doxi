@@ -1,8 +1,7 @@
 import Link from "@/components/docs/link";
-import IncrButton from "@/components/mdx/incr-button";
-import CacheCityWeather from "@/components/mdx/cache-city-weather";
 import Pre from "@/components/docs/pre";
 import Image from "@/components/docs/image";
+import IncrButton from "@/components/mdx/incr-button";
 
 export const components = {
   a: Link,
@@ -10,5 +9,4 @@ export const components = {
   Image: Image,
   pre: Pre,
   IncrButton: IncrButton,
-  CacheCityWeather: CacheCityWeather,
 };

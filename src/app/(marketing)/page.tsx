@@ -1,4 +1,3 @@
-import { getView } from "@/lib/redis/view-counter";
 import { allDocs } from "contentlayer/generated";
 import GettingStarted from "./getting-started";
 import Tile from "./tile";
@@ -6,7 +5,6 @@ import Tile from "./tile";
 // TODO: add tiles with features on items
 
 export default async function Home() {
-  // const counter = await getView("root");
   const NAME = process.env.NEXT_PUBLIC_DOCUMENTATION_NAME;
   const docs = allDocs.filter((d) => d.url.startsWith("/data-types"));
   return (
