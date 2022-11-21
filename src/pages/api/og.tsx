@@ -36,23 +36,17 @@ export default async function handler(req: NextRequest) {
     const slug = hasSlug && searchParams.get("slug");
     const doc = await allDocs.find((c) => c._raw.flattenedPath === slug);
 
-    const {
-      title,
-      excerpt,
-      _raw: { sourceFileDir },
-    } = doc || {
+    const { title, excerpt, pathSegments } = doc || {
       title: "Create your Documentation page",
       excerpt: "Build with Next.js and MDX. Powered by Contentlayer.",
-      _raw: {
-        sourceFileDir: "",
-      },
+      pathSegments: [],
     };
 
     return new ImageResponse(
       (
         <div
           style={{ fontFamily: '"Inter"' }}
-          tw="w-full h-full flex flex-col p-8"
+          tw="w-full h-full flex flex-col py-8 px-12"
         >
           <div tw="flex-1 flex flex-col w-full border-4 border-green-300 rounded-xl bg-green-50 p-6">
             <div tw="flex items-center">
@@ -89,7 +83,7 @@ export default async function handler(req: NextRequest) {
             <div tw="flex-1 flex flex-col justify-end">
               {/* TODO: dynamic doc */}
               <p tw="text-green-500 text-xl font-medium mb-0 uppercase">
-                {sourceFileDir.replaceAll("-", " ")}
+                {pathSegments[0]?.pathName.replace("-", " ")}
               </p>
               <p tw="text-5xl font-extrabold text-green-900">{title}</p>
               <p tw="text-3xl text-gray-700">{excerpt}</p>
