@@ -19,15 +19,16 @@ export default function BaseLayout({
     notFound();
   }
   return (
-    <div className="flex w-full flex-1 flex-col lg:flex-row">
-      {/* REMINDER: max-h-[calc(h-screen - h-header)] */}
+    <div className="flex w-full flex-1 flex-col lg:container lg:mx-auto lg:flex-row">
       <aside className="sticky top-0 hidden max-h-[calc(100vh-73px)] w-full items-stretch overflow-y-auto p-6 lg:block lg:max-w-[256px]">
         <LeftSideBar />
       </aside>
-      <div className="sticky top-0 z-10 -mx-36 block border-b border-gray-100 bg-white px-[10rem] py-3 lg:hidden">
-        <MobileMenu />
+      <div className="sticky top-0 z-10 block border-b border-gray-100 bg-white lg:hidden">
+        <div className="container mx-auto py-3 px-4">
+          <MobileMenu />
+        </div>
       </div>
-      <div className="flex-1 items-stretch overflow-auto border-gray-100 px-4 py-6 lg:border-l lg:px-6 xl:border-r">
+      <div className="container mx-auto flex-1 items-stretch overflow-auto border-gray-100 px-4 py-6 lg:max-w-none lg:border-l lg:px-6 xl:border-r">
         {children}
       </div>
       <aside className="sticky top-0 hidden max-h-[calc(100vh-73px)] w-full max-w-[256px] items-stretch overflow-y-auto p-6 xl:block">

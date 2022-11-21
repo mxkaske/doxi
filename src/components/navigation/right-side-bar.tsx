@@ -14,6 +14,10 @@ export default function RightSideBar({ doc }: { doc: Doc }) {
   const headings = doc.headings as Item[];
   const activeSlug = useActiveSlug(headings.map((h) => h.slug!));
 
+  if (headings.length === 0) {
+    return null;
+  }
+
   return (
     <ul className="grid gap-2">
       <li>

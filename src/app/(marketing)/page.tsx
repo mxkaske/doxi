@@ -1,4 +1,5 @@
-import { Button } from "@/components/ui/button";
+import Link from "@/components/docs/link";
+import Callout from "@/components/ui/callout";
 import { allDocs } from "contentlayer/generated";
 import { PathSegments } from "src/contentlayer/utils";
 import ForkNow from "./fork-now";
@@ -33,6 +34,15 @@ export default async function Home() {
         {docs.map(({ url, title, excerpt }) => (
           <Tile key={url} {...{ url, title, excerpt }} />
         ))}
+      </div>
+      <div className="mx-auto max-w-2xl">
+        <Callout>
+          <p className="text-sm font-medium">
+            This is a work in progress Next.js 13 project. I invite you to read,
+            review or contribute to it however you want!{" "}
+            <Link href={process.env.NEXT_PUBLIC_GITHUB_URL}>GitHub</Link>
+          </p>
+        </Callout>
       </div>
     </div>
   );
