@@ -10,7 +10,27 @@
   }
 }
 
+/* DEMO: used in tailwind.config.js */
+@layer base {
+  :root {
+    --brand-color-50: 240 253 244;
+    --brand-color-100: 220 252 231;
+    --brand-color-200: 187 247 208;
+    --brand-color-300: 134 239 172;
+    --brand-color-400: 74 222 128;
+    --brand-color-500: 34 197 94;
+    --brand-color-600: 22 163 74;
+    --brand-color-700: 21 128 61;
+    --brand-color-800: 22 101 52;
+    --brand-color-900: 20 83 45;
+  }
+}
+
 /* TODO: add @apply to possible tags */
+
+div[data-rehype-pretty-code-title] {
+  @apply -mb-5 ml-4 font-mono text-sm;
+}
 
 div[data-rehype-pretty-code-fragment] code {
   display: grid;
@@ -18,26 +38,17 @@ div[data-rehype-pretty-code-fragment] code {
 }
 
 div[data-rehype-pretty-code-fragment] code .line {
-  padding: 0 1.25rem;
-  border-left: 2px solid transparent;
+  @apply border-l-2 border-transparent px-5 py-0;
 }
 
 div[data-rehype-pretty-code-fragment] code[data-line-numbers] .line::before {
   counter-increment: line;
   content: counter(line);
-
-  /* Other styling */
-  display: inline-block;
-  width: 1rem;
-  margin-right: 2rem;
-  text-align: right;
-  color: gray;
+  @apply mr-8 inline-block w-4 text-right text-gray-500;
 }
 
 div[data-rehype-pretty-code-fragment] code .word {
-  @apply bg-brand-100/50;
-  padding: 0.25rem;
-  border-radius: 0.25rem;
+  @apply rounded bg-brand-100/50 p-1;
 }
 
 div[data-rehype-pretty-code-fragment] code .highlighted {
@@ -46,5 +57,5 @@ div[data-rehype-pretty-code-fragment] code .highlighted {
 
 /* OVERWRITE prose-rem default */
 div[data-rehype-pretty-code-fragment] pre {
-  padding: 1.25rem 0 !important;
+  @apply py-5 px-0;
 }
