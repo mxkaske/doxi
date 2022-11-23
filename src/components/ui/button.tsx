@@ -4,7 +4,7 @@ import { twMerge } from "tailwind-merge";
 const styles = {
   base: "rounded-md border border-transparent py-1 px-2 text-sm",
   variant: {
-    primary: "bg-black text-white hover:shadow-md",
+    primary: "bg-black text-white hover:shadow-md", // DISCUSS shadow color with hover:shadow-brand-100
     secondary: "bg-white text-black border-gray-100 hover:bg-gray-50",
   },
 };
