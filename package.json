@@ -1,45 +1,32 @@
 {
   "name": "doxi",
-  "version": "0.1.0",
-  "private": true,
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint",
-    "tsc": "tsc"
+    "build": "turbo run build",
+    "build:web": "turbo run build --filter=web..",
+    "test": "turbo run test",
+    "lint": "turbo run lint",
+    "dev": "turbo run dev",
+    "dev:web": "turbo run dev --filter=web..."
   },
-  "dependencies": {
-    "@next/font": "^13.0.3",
-    "@radix-ui/react-collapsible": "^1.0.1",
-    "@vercel/og": "^0.0.20",
-    "contentlayer": "^0.2.9",
-    "next": "13.0.3",
-    "next-contentlayer": "^0.2.9",
-    "react": "18.2.0",
-    "react-dom": "18.2.0"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mxkaske/doxi.git"
   },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mxkaske/doxi/issues"
+  },
+  "homepage": "https://github.com/mxkaske/doxi#readme",
   "devDependencies": {
-    "@tailwindcss/forms": "^0.5.3",
-    "@tailwindcss/typography": "^0.5.8",
-    "@types/node": "18.11.9",
-    "@types/react": "18.0.25",
-    "@types/react-dom": "18.0.8",
-    "@vercel/analytics": "^0.1.3",
-    "autoprefixer": "^10.4.13",
-    "eslint": "8.27.0",
-    "eslint-config-next": "13.0.2",
-    "github-slugger": "^2.0.0",
-    "postcss": "^8.4.18",
-    "prettier": "^2.7.1",
-    "prettier-plugin-tailwindcss": "^0.1.13",
-    "reading-time": "^1.5.0",
-    "rehype-autolink-headings": "^6.1.1",
-    "rehype-pretty-code": "^0.5.0",
-    "rehype-slug": "^5.1.0",
-    "shiki": "^0.11.1",
-    "tailwindcss": "^3.2.2",
-    "tailwind-merge": "^1.8.0",
-    "typescript": "4.8.4"
+    "turbo": "^1.6.3"
   }
 }
