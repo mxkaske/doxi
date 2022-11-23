@@ -24,6 +24,8 @@ export default function ChangeBrandColor() {
       <Select
         onChange={(e) => {
           const value = e.target.value as keyof typeof colors;
+          // TODO: search for the `pre` > * element that has "colors." in the name
+          // replace the name with the current value
           Object.keys(colors[value]).map((key) => {
             // @ts-ignore
             const hex = colors[value][key];
