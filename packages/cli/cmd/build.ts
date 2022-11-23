@@ -6,11 +6,6 @@ const version = Deno.args[0] ?? "development";
 
 await emptyDir(outDir);
 
-Deno.writeTextFileSync(
-  "./src/version.ts",
-  `export const VERSION = "${version}"`
-);
-
 await build({
   packageManager,
   entryPoints: [{ kind: "bin", name: "create-doxi-app", path: "src/mod.ts" }],
@@ -28,11 +23,6 @@ await build({
     // TODO: extend props
   },
 });
-Deno.writeTextFileSync(
-  "./src/version.ts",
-  `// This is set during build
-export const VERSION = "development";`
-);
 
 // post build steps
 Deno.copyFileSync("LICENSE", `${outDir}/LICENSE`);
