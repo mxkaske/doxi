@@ -2,7 +2,7 @@
 
 See full Next.js Application in [/apps/web](https://github.com/mxkaske/doxi/tree/main/apps/web).
 
-[doxi.vercel.app](https://doxi.vercel.app).
+[doxi.vercel.app](https://doxi.vercel.app)
 
 > This repository has moved into a monorepo using turbo. A CLI will provide simple access to the core application in `/apps/web`.
 
@@ -11,10 +11,10 @@ See full Next.js Application in [/apps/web](https://github.com/mxkaske/doxi/tree
 Install dependencies via:
 
 ```bash
-$ npm run i
+$ npm install
 ```
 
-Run local server
+Run local server:
 
 ```bash
 $ npx turbo run dev
