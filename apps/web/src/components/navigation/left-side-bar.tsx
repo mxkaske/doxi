@@ -10,6 +10,7 @@ import ListElement from "./list-element";
 function docsTree() {
   return allDocs.reduce((prev, curr) => {
     const pathSegments = curr.pathSegments as PathSegments;
+    console.log(pathSegments);
     const chapter = pathSegments[0].pathName.replace("-", " ");
     if (Array.isArray(prev[chapter])) {
       prev[chapter].push(curr);

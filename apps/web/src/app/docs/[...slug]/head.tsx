@@ -1,15 +1,13 @@
 import { allDocs } from "contentlayer/generated";
 import { notFound } from "next/navigation";
+import { getDocBySlug } from "./utils";
 
 // TODO: add more infos like reading time to OG - maybe also an excerpt/description?
+const URL = process.env.NEXT_PUBLICH_DOCUMENTATION_URL;
+const NAME = process.env.NEXT_PUBLIC_DOCUMENTATION_NAME;
 
 export default function Head({ params }: { params: { slug: string[] } }) {
-  const URL = process.env.NEXT_PUBLICH_DOCUMENTATION_URL;
-  const NAME = process.env.NEXT_PUBLIC_DOCUMENTATION_NAME;
-  const doc = allDocs.find((c) => c.url === `/${params.slug.join("/")}`);
-  if (!doc) {
-    notFound();
-  }
+  const doc = getDocBySlug(params.slug);
   // https://github.com/vercel/next.js/discussions/38256
   const title = `${NAME} - ${doc.title}`;
   return (

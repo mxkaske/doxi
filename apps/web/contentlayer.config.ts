@@ -3,13 +3,13 @@ import slug from "rehype-slug";
 import prettyCode from "./src/contentlayer/plugins/pretty-code";
 import autolinkHeadings from "./src/contentlayer/plugins/autolink-headings";
 import { contentDirPath } from "./src/contentlayer/utils";
-import { Doc } from "./src/contentlayer/documents/Doc";
+import * as documentTypes from "./src/contentlayer";
 
 // TODO: add tsconfig import path
 
 export default makeSource({
   contentDirPath,
-  documentTypes: [Doc],
+  documentTypes,
   mdx: {
     rehypePlugins: [slug, autolinkHeadings, prettyCode],
   },
