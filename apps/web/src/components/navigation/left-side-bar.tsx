@@ -10,7 +10,7 @@ import ListElement from "./list-element";
 function docsTree() {
   return allDocs.reduce((prev, curr) => {
     const pathSegments = curr.pathSegments as PathSegments;
-    console.log(pathSegments);
+    // console.log(pathSegments);
     const chapter = pathSegments[0].pathName.replace("-", " ");
     if (Array.isArray(prev[chapter])) {
       prev[chapter].push(curr);
@@ -29,7 +29,7 @@ type Node = {
 // TODO: FIXME: instead of parentPathNames, pass parentPathSegments
 function buildTree(docs: Doc[], parentPathNames: string[] = []): Node[] {
   const level = parentPathNames.length;
-  console.log(parentPathNames);
+  // console.log(parentPathNames);
   const children = docs
     .filter((_) => {
       const pathSegments = _.pathSegments as PathSegments;
