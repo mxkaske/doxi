@@ -20,19 +20,20 @@ function docsTree() {
   }, {} as Record<string, Doc[]>);
 }
 
-type Node = Doc & {
+type Node = {
+  doc?: Doc;
   children: Node[];
 };
 
 // TODO: FIXME: instead of parentPathNames, pass parentPathSegments
 function buildTree(docs: Doc[], parentPathNames: string[] = []): Node[] {
   const level = parentPathNames.length;
+  console.log(parentPathNames);
   const children = docs
     .filter((_) => {
       const pathSegments = _.pathSegments as PathSegments;
-      // console.log(pathSegments.map((_) => _.pathName).join("/"));
       return (
-        pathSegments.length === level + 1 &&
+        pathSegments.length === level + 1 && // REMINDER: that means it is a leave
         pathSegments
           .map((_) => _.pathName)
           .join("/")
@@ -40,10 +41,11 @@ function buildTree(docs: Doc[], parentPathNames: string[] = []): Node[] {
       );
     })
     .sort((a, b) => a.pathSegments[level].order - b.pathSegments[level].order)
-    .map((doc) => {
+    .map<Node>((doc) => {
       const pathSegments = doc.pathSegments as PathSegments;
+      // console.log(pathSegments);
       return {
-        ...doc,
+        doc,
         children: buildTree(
           docs,
           pathSegments.map((_) => _.pathName)
@@ -51,18 +53,55 @@ function buildTree(docs: Doc[], parentPathNames: string[] = []): Node[] {
       };
     });
 
-  if (children.length === 0) {
-    // TODO:
-  }
+  // no leafs
+  const pathNames = [
+    ...new Set(
+      docs
+        .filter((_) => {
+          const pathSegments = _.pathSegments as PathSegments;
+          return (
+            // REMINDER: opposite
+            // pathSegments.length > 0 &&
+            pathSegments.length !== level + 1 &&
+            pathSegments
+              .map((_) => _.pathName)
+              .join("/")
+              .startsWith(parentPathNames.join("/"))
+          );
+        })
+        .map((_) => {
+          const pathSegments = _.pathSegments as PathSegments;
+          return pathSegments[0].pathName;
+        })
+    ),
+  ];
 
-  return children;
+  // console.log(pathNames, children.length);
+
+  if (
+    pathNames.length > 0 &&
+    parentPathNames.length > 0 &&
+    pathNames[0] === parentPathNames[0]
+  ) {
+    console.log("subfolder");
+    // console.log(pathNames, parentPathNames);
+    return children;
+  }
+  const a = pathNames.map((path) => ({
+    doc: undefined,
+    children: buildTree(docs, [path]),
+  }));
+
+  // console.log(children);
+  // FIXME: potentially wrong order
+  return [...children, ...a];
 }
 
 export default function LeftSideBar() {
   const pathname = usePathname();
   const tree = docsTree();
 
-  // const t = buildTree(allDocs, ["features"]);
+  // const t = buildTree(allDocs, ["getting-started"]);
   // const t = buildTree(allDocs);
 
   // console.log(t);
