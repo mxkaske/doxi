@@ -1,7 +1,9 @@
 import { ImageResponse } from "@vercel/og";
-import { allDocs } from "contentlayer/generated";
 import { NextRequest } from "next/server";
 import colors from "tailwindcss/colors";
+
+// REMINDER: reason why we are not importing the generated docs is:
+// bundled edge functions are limited to 1MB
 
 export const config = {
   runtime: "experimental-edge",
@@ -34,13 +36,17 @@ export default async function handler(req: NextRequest) {
     // console.log({ hash, url: req.nextUrl });
     const hasSlug = searchParams.has("slug");
     const slug = hasSlug && searchParams.get("slug");
-    const doc = await allDocs.find((c) => c._raw.flattenedPath === slug);
 
-    const { title, excerpt, pathSegments } = doc || {
-      title: "Create your Documentation",
-      excerpt: "Build with Next.js and MDX. Powered by Contentlayer.",
-      pathSegments: [],
-    };
+    const hasTitle = searchParams.has("title");
+    const title = hasTitle
+      ? searchParams.get("title")
+      : "Create your Documentation";
+    const hasExcerpt = searchParams.has("excerpt");
+    const excerpt = hasExcerpt
+      ? searchParams.get("excerpt")
+      : "Build with Next.js and MDX. Powered by Contentlayer.";
+    const hasChapter = searchParams.has("chapter");
+    const chapter = hasChapter ? searchParams.get("chapter") : "";
 
     return new ImageResponse(
       (
@@ -83,7 +89,7 @@ export default async function handler(req: NextRequest) {
             <div tw="flex-1 flex flex-col justify-end">
               {/* TODO: dynamic doc */}
               <p tw="text-green-500 text-xl font-medium mb-0 uppercase">
-                {pathSegments[0]?.pathName.replace("-", " ")}
+                {chapter}
               </p>
               <p tw="text-5xl font-extrabold text-green-900">{title}</p>
               <p tw="text-3xl text-gray-700">{excerpt}</p>
