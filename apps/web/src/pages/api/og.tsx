@@ -30,12 +30,7 @@ export default async function handler(req: NextRequest) {
     const fontRegularData = await fontRegular;
     const fontExtraBoldData = await fontExtraBold;
     const fontMediumData = await fontMedium;
-    const { searchParams, hash } = new URL(req.url);
-    // TODO: if possible, detect the haxsh and highlight it!
-    // The '#' can only be read on the client - **not** server.
-    // console.log({ hash, url: req.nextUrl });
-    const hasSlug = searchParams.has("slug");
-    const slug = hasSlug && searchParams.get("slug");
+    const { searchParams } = new URL(req.url);
 
     const hasTitle = searchParams.has("title");
     const title = hasTitle
