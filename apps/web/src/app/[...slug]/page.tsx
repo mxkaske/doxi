@@ -12,7 +12,8 @@ export default function StaticPage({ params }: { params: { slug: string[] } }) {
   const page = getPagefromSlug(params.slug);
   return (
     <div className="container mx-auto">
-      <div className="mx-auto max-w-prose border-gray-100 px-4 py-6 lg:border-l lg:border-r lg:px-6">
+      {/* REMOVED: border-gray-100 lg:border-l lg:border-r */}
+      <div className="mx-auto max-w-prose px-4 py-6 lg:px-6">
         <Content content={page} />
       </div>
     </div>
