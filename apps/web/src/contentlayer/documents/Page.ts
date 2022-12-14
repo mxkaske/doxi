@@ -7,32 +7,28 @@ import {
   getUrl,
 } from "../utils";
 
-export const Doc = defineDocumentType(() => ({
-  name: "Doc",
-  filePathPattern: `docs/**/*.mdx`,
+export const Page = defineDocumentType(() => ({
+  name: "Page",
+  filePathPattern: `**/*.mdx`,
   contentType: "mdx",
   fields: {
     title: {
       type: "string",
-      description: "The title of the post",
+      description: "The title of the static page",
       required: true,
     },
     date: {
       type: "date",
-      description: "The date of the post",
-      required: true,
-    },
-    // REMINDER: used for og generation - name property might confuse
-    excerpt: {
-      type: "string",
-      description: "The excerpt of the post",
+      description: "The date of the static page",
       required: true,
     },
   },
   computedFields: {
     url: {
       type: "string",
-      resolve: (_) => getUrl(_),
+      resolve: (_) => {
+        return getUrl(_, "/pages");
+      },
     },
     lastEdited: {
       type: "date",
@@ -48,7 +44,7 @@ export const Doc = defineDocumentType(() => ({
     },
     pathSegments: {
       type: "json",
-      resolve: (_) => getPathSegments(_, "/docs"),
+      resolve: (_) => getPathSegments(_, "/pages"),
     },
   },
 }));

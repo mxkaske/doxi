@@ -9,7 +9,7 @@ import Tile from "./tile";
 export default async function Home() {
   const NAME = process.env.NEXT_PUBLIC_DOCUMENTATION_NAME;
   const docs = allDocs
-    .filter((d) => d.url.startsWith("/features"))
+    .filter((d) => d.url.startsWith("/docs/features"))
     .sort((a, b) => {
       const pathA = a.pathSegments as PathSegments;
       const pathB = b.pathSegments as PathSegments;

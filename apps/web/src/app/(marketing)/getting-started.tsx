@@ -9,7 +9,7 @@ export default function GettingStarted() {
   return (
     <Button
       onClick={() => {
-        router.push("/getting-started/introduction");
+        router.push("/docs/getting-started/introduction");
       }}
     >
       Getting Started
