@@ -20,16 +20,11 @@ const fontExtraBold = fetch(
   new URL("../../fonts/Inter-ExtraBold.ttf", import.meta.url)
 ).then((res) => res.arrayBuffer());
 
-const fontMedium = fetch(
-  new URL("../../fonts/Inter-Medium.ttf", import.meta.url)
-).then((res) => res.arrayBuffer());
-
 export default async function handler(req: NextRequest) {
   try {
     const NAME = process.env.NEXT_PUBLIC_DOCUMENTATION_NAME;
     const fontRegularData = await fontRegular;
     const fontExtraBoldData = await fontExtraBold;
-    const fontMediumData = await fontMedium;
     const { searchParams } = new URL(req.url);
 
     const hasTitle = searchParams.has("title");
@@ -86,7 +81,7 @@ export default async function handler(req: NextRequest) {
             </div>
             <div tw="flex-1 flex flex-col justify-end">
               {/* TODO: dynamic doc */}
-              <p tw="text-green-500 text-xl font-medium mb-0 uppercase">
+              <p tw="text-green-400 text-xl font-medium mb-0 uppercase">
                 {chapter}
               </p>
               <p tw="text-5xl font-extrabold text-green-900">{title}</p>
@@ -110,12 +105,6 @@ export default async function handler(req: NextRequest) {
             data: fontExtraBoldData,
             style: "normal",
             weight: 800,
-          },
-          {
-            name: "Inter",
-            data: fontMediumData,
-            style: "normal",
-            weight: 500,
           },
         ],
       }
