@@ -15,11 +15,13 @@ export const metadata: Metadata = {
   description: DESCRIPTION,
   openGraph: {
     type: "website",
+    title: NAME,
     url: URL,
     images: [`${URL}/api/og`],
   },
   twitter: {
     card: "summary_large_image",
+    title: NAME,
     images: [`${URL}/api/og`],
   },
 };

@@ -21,6 +21,7 @@ export async function generateMetadata({
     openGraph: {
       type: "website",
       url: `${URL}${doc.url}`,
+      title,
       description: doc.excerpt,
       images: [
         `${URL}/api/og?title=${doc.title}&excerpt=${doc.excerpt}&chapter=${doc.pathSegments[0].pathName}`,
@@ -28,6 +29,7 @@ export async function generateMetadata({
     },
     twitter: {
       card: "summary_large_image",
+      title,
       description: doc.excerpt,
       images: [
         `${URL}/api/og?title=${doc.title}&excerpt=${doc.excerpt}&chapter=${doc.pathSegments[0].pathName}`,
