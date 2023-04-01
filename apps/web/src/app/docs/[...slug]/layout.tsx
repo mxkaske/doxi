@@ -8,11 +8,11 @@ import { Metadata } from "next";
 const URL = process.env.NEXT_PUBLIC_DOCUMENTATION_URL;
 const NAME = process.env.NEXT_PUBLIC_DOCUMENTATION_NAME;
 
-export function generateMetadata({
+export async function generateMetadata({
   params,
 }: {
   params: { slug: string[] };
-}): Metadata {
+}): Promise<Metadata> {
   const doc = getDocBySlug(params.slug);
   const title = `${NAME} - ${doc.title}`;
   return {

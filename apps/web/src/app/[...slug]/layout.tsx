@@ -6,11 +6,11 @@ const NAME = process.env.NEXT_PUBLIC_DOCUMENTATION_NAME;
 const DESCRIPTION =
   "Create your Documentation with Next.js and MDX. Powered by Contentlayer.";
 
-export function generateMetadata({
+export async function generateMetadata({
   params,
 }: {
   params: { slug: string[] };
-}): Metadata {
+}): Promise<Metadata> {
   const page = getPagefromSlug(params.slug);
   const title = `${NAME} - ${page.title}`;
   return {
