@@ -24,6 +24,7 @@ module.exports = {
           700: "rgb(var(--brand-color-700) / <alpha-value>)",
           800: "rgb(var(--brand-color-800) / <alpha-value>)",
           900: "rgb(var(--brand-color-900) / <alpha-value>)",
+          950: "rgb(var(--brand-color-950) / <alpha-value>)",
         },
       },
     },
