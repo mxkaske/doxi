@@ -25,7 +25,7 @@
   },
   "homepage": "https://github.com/mxkaske/doxi#readme",
   "devDependencies": {
-    "turbo": "^1.6.3"
+    "turbo": "^1.8.8"
   },
   "packageManager": "npm@8.1.2"
 }
