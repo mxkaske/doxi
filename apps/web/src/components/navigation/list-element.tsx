@@ -20,7 +20,7 @@ export default function ListElement({
       href={`${url}`}
       className={`group -mx-2 rounded-md px-2 py-0.5 ${
         isActive
-          ? "bg-brand-50 text-brand-900"
+          ? "bg-brand-50 text-brand-950"
           : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
       } ${level === 3 ? "ml-3" : level === 4 ? "ml-6" : "ml-0"}`} // TODO: more levels!
     >
