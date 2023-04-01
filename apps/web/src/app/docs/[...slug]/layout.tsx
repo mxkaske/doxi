@@ -1,9 +1,8 @@
-import { allDocs } from "contentlayer/generated";
-import { notFound } from "next/navigation";
 import React from "react";
 import RightSideBar from "@/components/navigation/right-side-bar";
 import LeftSideBar from "@/components/navigation/left-side-bar";
 import MobileMenu from "@/components/navigation/mobile-menu";
+import { getDocBySlug } from "./utils";
 
 export default function BaseLayout({
   children,
@@ -12,12 +11,7 @@ export default function BaseLayout({
   children: React.ReactNode;
   params: { slug: string[] };
 }) {
-  // we are doing this work twice... also in page.tsx
-  const doc = allDocs.find((c) => c.url === `/${params.slug.join("/")}`);
-
-  if (!doc) {
-    notFound();
-  }
+  const doc = getDocBySlug(params.slug);
   return (
     <div className="flex w-full flex-1 flex-col lg:container lg:mx-auto lg:flex-row">
       <aside className="sticky top-0 hidden max-h-[calc(100vh-73px)] w-full items-stretch overflow-y-auto p-6 lg:block lg:max-w-[256px]">

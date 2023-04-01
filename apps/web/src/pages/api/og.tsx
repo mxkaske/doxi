@@ -1,7 +1,9 @@
 import { ImageResponse } from "@vercel/og";
-import { allDocs } from "contentlayer/generated";
 import { NextRequest } from "next/server";
-import colors from "tailwindcss/colors";
+// import colors from "tailwindcss/colors";
+
+// REMINDER: reason why we are not importing the generated docs is:
+// bundled edge functions are limited to 1MB
 
 export const config = {
   runtime: "experimental-edge",
@@ -18,29 +20,23 @@ const fontExtraBold = fetch(
   new URL("../../fonts/Inter-ExtraBold.ttf", import.meta.url)
 ).then((res) => res.arrayBuffer());
 
-const fontMedium = fetch(
-  new URL("../../fonts/Inter-Medium.ttf", import.meta.url)
-).then((res) => res.arrayBuffer());
-
 export default async function handler(req: NextRequest) {
   try {
     const NAME = process.env.NEXT_PUBLIC_DOCUMENTATION_NAME;
     const fontRegularData = await fontRegular;
     const fontExtraBoldData = await fontExtraBold;
-    const fontMediumData = await fontMedium;
-    const { searchParams, hash } = new URL(req.url);
-    // TODO: if possible, detect the haxsh and highlight it!
-    // The '#' can only be read on the client - **not** server.
-    // console.log({ hash, url: req.nextUrl });
-    const hasSlug = searchParams.has("slug");
-    const slug = hasSlug && searchParams.get("slug");
-    const doc = await allDocs.find((c) => c._raw.flattenedPath === slug);
+    const { searchParams } = new URL(req.url);
 
-    const { title, excerpt, pathSegments } = doc || {
-      title: "Create your Documentation",
-      excerpt: "Build with Next.js and MDX. Powered by Contentlayer.",
-      pathSegments: [],
-    };
+    const hasTitle = searchParams.has("title");
+    const title = hasTitle
+      ? searchParams.get("title")
+      : "Create your Documentation";
+    const hasExcerpt = searchParams.has("excerpt");
+    const excerpt = hasExcerpt
+      ? searchParams.get("excerpt")
+      : "Build with Next.js and MDX. Powered by Contentlayer.";
+    const hasChapter = searchParams.has("chapter");
+    const chapter = hasChapter ? searchParams.get("chapter") : "";
 
     return new ImageResponse(
       (
@@ -58,21 +54,24 @@ export default async function handler(req: NextRequest) {
               >
                 <path
                   d="M6.179 15L2 17.25L6.179 19.5L11.75 22.5L14.5355 21L17.321 19.5L21.5 17.25L17.321 15"
-                  stroke={colors.green[300]}
+                  // stroke={colors.green[300]}
+                  stroke="#86efac"
                   strokeWidth="1.5"
                   strokeLinecap="round"
                   strokeLinejoin="round"
                 />
                 <path
                   d="M6.179 10L2 12.25L6.179 14.5L11.75 17.5L14.5355 16L17.321 14.5L21.5 12.25L17.321 10"
-                  stroke={colors.green[500]}
+                  // stroke={colors.green[500]}
+                  stroke="#22c55e"
                   strokeWidth="1.5"
                   strokeLinecap="round"
                   strokeLinejoin="round"
                 />
                 <path
                   d="M6.179 9.5L11.75 12.5L17.321 9.5M6.179 9.5L2 7.25L6.875 4.625L11.75 2L21.5 7.25L17.321 9.5"
-                  stroke={colors.green[800]}
+                  // stroke={colors.green[800]}
+                  stroke="#166534"
                   strokeWidth="1.5"
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -82,8 +81,8 @@ export default async function handler(req: NextRequest) {
             </div>
             <div tw="flex-1 flex flex-col justify-end">
               {/* TODO: dynamic doc */}
-              <p tw="text-green-500 text-xl font-medium mb-0 uppercase">
-                {pathSegments[0]?.pathName.replace("-", " ")}
+              <p tw="text-green-400 text-xl font-medium mb-0 uppercase">
+                {chapter}
               </p>
               <p tw="text-5xl font-extrabold text-green-900">{title}</p>
               <p tw="text-3xl text-gray-700">{excerpt}</p>
@@ -106,12 +105,6 @@ export default async function handler(req: NextRequest) {
             data: fontExtraBoldData,
             style: "normal",
             weight: 800,
-          },
-          {
-            name: "Inter",
-            data: fontMediumData,
-            style: "normal",
-            weight: 500,
           },
         ],
       }
