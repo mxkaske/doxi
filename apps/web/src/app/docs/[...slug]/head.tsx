@@ -1,7 +1,7 @@
 import { getDocBySlug } from "./utils";
 
 // TODO: add more infos like reading time to OG - maybe also an excerpt/description?
-const URL = process.env.NEXT_PUBLICH_DOCUMENTATION_URL;
+const URL = process.env.NEXT_PUBLIC_DOCUMENTATION_URL;
 const NAME = process.env.NEXT_PUBLIC_DOCUMENTATION_NAME;
 
 export default function Head({ params }: { params: { slug: string[] } }) {
