@@ -1,6 +1,6 @@
 import "@/styles/globals.css";
 import Analytics from "@/components/analytics";
-import { Inter } from "@next/font/google";
+import { Inter } from "next/font/google";
 import TopBar from "@/components/navigation/top-bar";
 import BottomBar from "@/components/navigation/bottom-bar";
 
