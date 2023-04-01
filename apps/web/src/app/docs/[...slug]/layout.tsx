@@ -15,6 +15,11 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const doc = getDocBySlug(params.slug);
   const title = `${NAME} - ${doc.title}`;
+  const image = `${URL}/api/og?title=${encodeURIComponent(
+    doc.title
+  )}&excerpt=${encodeURIComponent(doc.excerpt)}&chapter=${encodeURIComponent(
+    doc.pathSegments[0].pathName
+  )}`;
   return {
     title,
     description: doc.excerpt,
@@ -23,17 +28,13 @@ export async function generateMetadata({
       url: `${URL}${doc.url}`,
       title,
       description: doc.excerpt,
-      images: [
-        `${URL}/api/og?title=${doc.title}&excerpt=${doc.excerpt}&chapter=${doc.pathSegments[0].pathName}`,
-      ],
+      images: [image],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description: doc.excerpt,
-      images: [
-        `${URL}/api/og?title=${doc.title}&excerpt=${doc.excerpt}&chapter=${doc.pathSegments[0].pathName}`,
-      ],
+      images: [image],
     },
   };
 }
