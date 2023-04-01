@@ -3,6 +3,26 @@ import Analytics from "@/components/analytics";
 import { Inter } from "next/font/google";
 import TopBar from "@/components/navigation/top-bar";
 import BottomBar from "@/components/navigation/bottom-bar";
+import { Metadata } from "next";
+
+const URL = process.env.NEXT_PUBLIC_DOCUMENTATION_URL;
+const NAME = process.env.NEXT_PUBLIC_DOCUMENTATION_NAME;
+const DESCRIPTION =
+  "Create your Documentation with Next.js and MDX. Powered by Contentlayer.";
+
+export const metadata: Metadata = {
+  title: NAME,
+  description: DESCRIPTION,
+  openGraph: {
+    type: "website",
+    url: URL,
+    images: [`${URL}/api/og`],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: [`${URL}/api/og`],
+  },
+};
 
 const inter = Inter({
   variable: "--font-inter",

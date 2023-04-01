@@ -3,6 +3,38 @@ import RightSideBar from "@/components/navigation/right-side-bar";
 import LeftSideBar from "@/components/navigation/left-side-bar";
 import MobileMenu from "@/components/navigation/mobile-menu";
 import { getDocBySlug } from "./utils";
+import { Metadata } from "next";
+
+const URL = process.env.NEXT_PUBLIC_DOCUMENTATION_URL;
+const NAME = process.env.NEXT_PUBLIC_DOCUMENTATION_NAME;
+
+export function generateMetadata({
+  params,
+}: {
+  params: { slug: string[] };
+}): Metadata {
+  const doc = getDocBySlug(params.slug);
+  const title = `${NAME} - ${doc.title}`;
+  return {
+    title,
+    description: doc.excerpt,
+    openGraph: {
+      type: "website",
+      url: `${URL}${doc.url}`,
+      description: doc.excerpt,
+      images: [
+        `${URL}/api/og?title=${doc.title}&excerpt=${doc.excerpt}&chapter=${doc.pathSegments[0].pathName}`,
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      description: doc.excerpt,
+      images: [
+        `${URL}/api/og?title=${doc.title}&excerpt=${doc.excerpt}&chapter=${doc.pathSegments[0].pathName}`,
+      ],
+    },
+  };
+}
 
 export default function BaseLayout({
   children,
