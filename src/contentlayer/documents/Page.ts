@@ -5,6 +5,7 @@ import {
   getLastEditedDate,
   getPathSegments,
   getUrl,
+  getIsIndex,
 } from "../utils";
 
 export const Page = defineDocumentType(() => ({
@@ -22,12 +23,23 @@ export const Page = defineDocumentType(() => ({
       description: "The date of the static page",
       required: true,
     },
+    excerpt: {
+      type: "string",
+      description: "The excerpt of the static page",
+      required: true,
+    },
+    // showReadingTime: {
+    //   type: "boolean",
+    //   description: "Show the reading time of the static page",
+    //   default: true,
+    //   required: false
+    // }
   },
   computedFields: {
     url: {
       type: "string",
       resolve: (_) => {
-        return getUrl(_, "/pages");
+        return getUrl(_);
       },
     },
     lastEdited: {
@@ -44,7 +56,11 @@ export const Page = defineDocumentType(() => ({
     },
     pathSegments: {
       type: "json",
-      resolve: (_) => getPathSegments(_, "/pages"),
+      resolve: (_) => getPathSegments(_),
     },
+    isIndex: {
+      type: "boolean",
+      resolve: (_) => getIsIndex(_),
+    }
   },
 }));

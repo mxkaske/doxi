@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import type { Doc } from ".contentlayer/generated";
+import type { Page } from ".contentlayer/generated";
 import ListElement from "./list-element";
 
 type Item = {
@@ -10,7 +10,7 @@ type Item = {
   slug?: string;
 };
 
-export default function RightSideBar({ doc }: { doc: Doc }) {
+export default function RightSideBar({ doc }: { doc: Page }) {
   const headings = doc.headings as Item[];
   const activeSlug = useActiveSlug(headings.map((h) => h.slug!));
 

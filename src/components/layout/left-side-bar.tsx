@@ -1,33 +1,37 @@
 "use client";
 
-import { allDocs, type Doc } from "contentlayer/generated";
+import { allPages, type Page } from "contentlayer/generated";
 import { usePathname } from "next/navigation";
 import React from "react";
 import { PathSegments } from "src/contentlayer/utils";
 import ListElement from "./list-element";
 
+// FIXME: change name from doc to page
+
 // TODO: currently, only mdx files with a sourceFileDir !== "." are allowed
-function docsTree() {
-  return allDocs.reduce((prev, curr) => {
+function pagesTree() {
+  return allPages.reduce((prev, curr) => {
     const pathSegments = curr.pathSegments as PathSegments;
     // console.log(pathSegments);
     const chapter = pathSegments[0].pathName.replace("-", " ");
-    if (Array.isArray(prev[chapter])) {
-      prev[chapter].push(curr);
-    } else {
-      prev[chapter] = [curr];
+    if (!curr.isIndex) {
+      if (Array.isArray(prev[chapter])) {
+        prev[chapter].push(curr);
+      } else {
+        prev[chapter] = [curr];
+      }
     }
     return prev;
-  }, {} as Record<string, Doc[]>);
+  }, {} as Record<string, Page[]>);
 }
 
 type Node = {
-  doc?: Doc;
+  doc?: Page;
   children: Node[];
 };
 
 // TODO: FIXME: instead of parentPathNames, pass parentPathSegments
-function buildTree(docs: Doc[], parentPathNames: string[] = []): Node[] {
+function buildTree(docs: Page[], parentPathNames: string[] = []): Node[] {
   const level = parentPathNames.length;
   // console.log(parentPathNames);
   const children = docs
@@ -100,10 +104,10 @@ function buildTree(docs: Doc[], parentPathNames: string[] = []): Node[] {
 
 export default function LeftSideBar() {
   const pathname = usePathname();
-  const tree = docsTree();
+  const tree = pagesTree();
 
-  // const t = buildTree(allDocs, ["getting-started"]);
-  // const t = buildTree(allDocs);
+  // const t = buildTree(allPages, ["getting-started"]);
+  // const t = buildTree(allPages);
 
   // console.log(t);
 

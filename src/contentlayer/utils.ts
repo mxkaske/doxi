@@ -46,7 +46,7 @@ export type PathSegments = {
 // props to https://github.com/contentlayerdev/website/blob/main/src/contentlayer/document/Doc.ts
 export const getPathSegments = async (
   doc: DocumentGen,
-  prefix = "" // prefix removed - e.g. `/docs`
+  prefix = ""
 ): Promise<PathSegments> => {
   return doc._raw.flattenedPath
     .substring(prefix.length)
@@ -61,7 +61,7 @@ export const getPathSegments = async (
 
 export const getUrl = async (
   doc: DocumentGen,
-  prefix = "" // prefix removed - e.g. /pages
+  prefix = ""
 ) => {
   return doc._raw.flattenedPath
     .substring(prefix.length)
@@ -72,3 +72,8 @@ export const getUrl = async (
       return `${prev}/${pathName}`;
     }, "");
 };
+
+// FIXME: this is a hotfix
+export const getIsIndex = async (doc: DocumentGen) => {
+  return doc._raw.sourceFileName === "index.mdx"
+}
