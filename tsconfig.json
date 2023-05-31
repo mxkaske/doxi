@@ -21,12 +21,8 @@
     ],
     "baseUrl": ".",
     "paths": {
+      "@/*": ["./src/*"],
       "contentlayer/generated": ["./.contentlayer/generated"],
-      "@/lib/*": ["./src/lib/*"],
-      "@/components/*": ["./src/components/*"],
-      "@/styles/*": ["./src/styles/*"],
-      "@/icons/*": ["./src/icons/*"]
-      // TODO: contentlayer src directory
     }
   },
   "include": [

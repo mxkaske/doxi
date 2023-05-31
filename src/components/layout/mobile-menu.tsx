@@ -3,8 +3,7 @@
 import React from "react";
 import * as Collapsible from "@radix-ui/react-collapsible";
 import LeftSideBar from "./left-side-bar";
-import BarsIcon from "@/icons/Bars";
-import XMarkIcon from "@/icons/XMark";
+import { Menu, X } from "lucide-react";
 
 export default function MobileMenu() {
   const [open, setOpen] = React.useState(false);
@@ -15,9 +14,9 @@ export default function MobileMenu() {
         <div className="flex justify-between font-light">
           <span>Documentation</span>
           {open ? (
-            <XMarkIcon className="h-5 w-5" />
+            <X className="h-5 w-5" />
           ) : (
-            <BarsIcon className="h-5 w-5" />
+            <Menu className="h-5 w-5" />
           )}
         </div>
       </Collapsible.Trigger>
