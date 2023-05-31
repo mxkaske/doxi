@@ -1,4 +1,4 @@
-import Link from "@/components/docs/link";
+import Link from "@/components/ui/link";
 import Callout from "@/components/ui/callout";
 import { allDocs } from "contentlayer/generated";
 import { PathSegments } from "src/contentlayer/utils";
@@ -40,7 +40,7 @@ export default async function Home() {
           <p className="text-sm font-medium">
             This is a work in progress Next.js 13 project. I invite you to read,
             review or contribute to it however you want!{" "}
-            <Link href={process.env.NEXT_PUBLIC_GITHUB_URL}>GitHub</Link>
+            <Link href={`${process.env.NEXT_PUBLIC_GITHUB_URL}`}>GitHub</Link>
           </p>
         </Callout>
       </div>

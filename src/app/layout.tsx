@@ -1,8 +1,8 @@
 import "@/styles/globals.css";
 import Analytics from "@/components/analytics";
 import { Inter } from "next/font/google";
-import TopBar from "@/components/navigation/top-bar";
-import BottomBar from "@/components/navigation/bottom-bar";
+import TopBar from "@/components/layout/top-bar";
+import BottomBar from "@/components/layout/bottom-bar";
 import { Metadata } from "next";
 
 const URL = process.env.NEXT_PUBLIC_DOCUMENTATION_URL;

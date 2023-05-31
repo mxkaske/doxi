@@ -1,4 +1,4 @@
-import Content from "@/components/mdx/content";
+import Content from "@/components/layout/content";
 import { allDocs } from "contentlayer/generated";
 import { getDocBySlug } from "./utils";
 

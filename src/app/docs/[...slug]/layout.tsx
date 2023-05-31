@@ -1,7 +1,7 @@
 import React from "react";
-import RightSideBar from "@/components/navigation/right-side-bar";
-import LeftSideBar from "@/components/navigation/left-side-bar";
-import MobileMenu from "@/components/navigation/mobile-menu";
+import RightSideBar from "@/components/layout/right-side-bar";
+import LeftSideBar from "@/components/layout/left-side-bar";
+import MobileMenu from "@/components/layout/mobile-menu";
 import { getDocBySlug } from "./utils";
 import { Metadata } from "next";
 

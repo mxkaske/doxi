@@ -1,5 +1,5 @@
 import { allPages } from "contentlayer/generated";
-import Content from "@/components/mdx/content";
+import Content from "@/components/layout/content";
 import { getPagefromSlug } from "./utils";
 
 export async function generateStaticParams() {

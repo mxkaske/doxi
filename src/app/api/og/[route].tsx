@@ -1,26 +1,17 @@
 import { ImageResponse } from "@vercel/og";
 import { NextRequest } from "next/server";
-// import colors from "tailwindcss/colors";
 
-// REMINDER: reason why we are not importing the generated docs is:
-// bundled edge functions are limited to 1MB
-
-export const config = {
-  runtime: "experimental-edge",
-};
-
-// DISCUSS: what's the best way to fetch multiple
-// TODO: check if @next/font/google is accessible
+export const runtime = "edge"
 
 const fontRegular = fetch(
-  new URL("../../fonts/Inter-Regular.ttf", import.meta.url)
+  new URL("../../../fonts/Inter-Regular.ttf", import.meta.url)
 ).then((res) => res.arrayBuffer());
 
 const fontExtraBold = fetch(
-  new URL("../../fonts/Inter-ExtraBold.ttf", import.meta.url)
+  new URL("../../../fonts/Inter-ExtraBold.ttf", import.meta.url)
 ).then((res) => res.arrayBuffer());
 
-export default async function handler(req: NextRequest) {
+export async function GET(req: NextRequest) {
   try {
     const NAME = process.env.NEXT_PUBLIC_DOCUMENTATION_NAME;
     const fontRegularData = await fontRegular;
