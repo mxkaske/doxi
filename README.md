@@ -1,31 +1,10 @@
-# Doxi
+# Doxi - Create your own Documentation
 
-See full Next.js Application in [/apps/web](https://github.com/mxkaske/doxi/tree/main/apps/web).
+An open source application built with Next.js 13 and the new `/app` directory.
 
-[doxi.vercel.app](https://doxi.vercel.app)
+> **Warning**
+> This project is a work in progress.
 
-> This repository has moved into a monorepo using turbo. A CLI will provide simple access to the core application in `/apps/web`.
+Please fork the repository.
 
-### Development
-
-Install dependencies via:
-
-```bash
-$ npm install
-```
-
-Run local server:
-
-```bash
-$ npx turbo run dev
-```
-
-### Deployment
-
-Explicitly `build` the website.
-
-```
-npx turbo run build --filter=web...
-```
-
-On vercel, include the **Root Directory** `apps/web` in the _General_ Settings. The Build Settings should default automatically to Turborepo.
+Read more at [doxi.vercel.app](https://doxi.vercel.app).
