@@ -6,9 +6,9 @@ import GithubSlugger from "github-slugger";
 export const contentDirPath = "content";
 
 // DISCUSS: this will be the same for all files as the date will be the build time
-export const getLastEditedDate = async (doc: DocumentGen): Promise<Date> => {
+export const getLastEditedDate = async (page: DocumentGen): Promise<Date> => {
   const stats = await fs.stat(
-    path.join(contentDirPath, doc._raw.sourceFilePath)
+    path.join(contentDirPath, page._raw.sourceFilePath)
   );
   return stats.mtime;
 };
@@ -20,12 +20,12 @@ export type DocHeading = {
 };
 
 // props to https://youssefbouzekri.vercel.app/posts/contentlayer-table-of-contents
-export const getHeadings = async (doc: DocumentGen): Promise<DocHeading[]> => {
+export const getHeadings = async (page: DocumentGen): Promise<DocHeading[]> => {
   const regXHeader = /\n(?<flag>#{1,6})\s+(?<content>.+)/g;
   const slugger = new GithubSlugger();
   // TODO: instead of map, use reduce and only return object if **not undefined**
   const headings: DocHeading[] = Array.from(
-    doc.body.raw.matchAll(regXHeader)
+    page.body.raw.matchAll(regXHeader)
   ).map(({ groups }) => {
     const flag = groups?.flag;
     const content = groups?.content;
@@ -45,10 +45,10 @@ export type PathSegments = {
 
 // props to https://github.com/contentlayerdev/website/blob/main/src/contentlayer/document/Doc.ts
 export const getPathSegments = async (
-  doc: DocumentGen,
+  page: DocumentGen,
   prefix = ""
 ): Promise<PathSegments> => {
-  return doc._raw.flattenedPath
+  return page._raw.flattenedPath
     .substring(prefix.length)
     .split("/")
     .map((dirName) => {
@@ -60,10 +60,10 @@ export const getPathSegments = async (
 };
 
 export const getUrl = async (
-  doc: DocumentGen,
+  page: DocumentGen,
   prefix = ""
 ) => {
-  return doc._raw.flattenedPath
+  return page._raw.flattenedPath
     .substring(prefix.length)
     .split("/")
     .reduce((prev, curr) => {
@@ -74,6 +74,6 @@ export const getUrl = async (
 };
 
 // FIXME: this is a hotfix
-export const getIsIndex = async (doc: DocumentGen) => {
-  return doc._raw.sourceFileName === "index.mdx"
+export const getIsIndex = async (page: DocumentGen) => {
+  return page._raw.sourceFileName === "index.mdx"
 }

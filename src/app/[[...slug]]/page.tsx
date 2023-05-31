@@ -9,7 +9,7 @@ export async function generateStaticParams() {
   });
 }
 
-export default function DocPage({ params }: { params: { slug: string[] } }) {
-  const doc = getPagesBySlug(params.slug);
-  return <Content page={doc} />;
+export default function Page({ params }: { params: { slug: string[] } }) {
+  const page = getPagesBySlug(params.slug);
+  return <Content page={page} />;
 }

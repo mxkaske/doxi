@@ -13,27 +13,25 @@ export async function generateMetadata({
 }: {
   params: { slug: string[] };
 }): Promise<Metadata> {
-  const doc = getPagesBySlug(params.slug);
-  const title = `${NAME} - ${doc.title}`;
+  const page = getPagesBySlug(params.slug);
+  const title = `${NAME} - ${page.title}`;
   const image = `${URL}/api/og?title=${encodeURIComponent(
-    doc.title
-  )}&excerpt=${encodeURIComponent(doc.excerpt)}&chapter=${encodeURIComponent(
-    doc.pathSegments[0].pathName
-  )}`;
+    page.title
+  )}&excerpt=${encodeURIComponent(page.excerpt)}`;
   return {
     title,
-    description: doc.excerpt,
+    description: page.excerpt,
     openGraph: {
       type: "website",
-      url: `${URL}${doc.url}`,
+      url: `${URL}${page.url}`,
       title,
-      description: doc.excerpt,
+      description: page.excerpt,
       images: [image],
     },
     twitter: {
       card: "summary_large_image",
       title,
-      description: doc.excerpt,
+      description: page.excerpt,
       images: [image],
     },
   };
@@ -46,7 +44,7 @@ export default function BaseLayout({
   children: React.ReactNode;
   params: { slug: string[] };
 }) {
-  const doc = getPagesBySlug(params.slug);
+  const page = getPagesBySlug(params.slug);
   return (
     <div className="flex w-full flex-1 flex-col lg:container lg:mx-auto lg:flex-row">
       <aside className="sticky top-0 hidden max-h-[calc(100vh-73px)] w-full items-stretch overflow-y-auto p-6 lg:block lg:max-w-[256px]">
@@ -61,7 +59,7 @@ export default function BaseLayout({
         {children}
       </div>
       <aside className="sticky top-0 hidden max-h-[calc(100vh-73px)] w-full max-w-[256px] items-stretch overflow-y-auto p-6 xl:block">
-        <RightSideBar doc={doc} />
+        <RightSideBar page={page} />
       </aside>
     </div>
   );

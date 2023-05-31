@@ -10,8 +10,8 @@ type Item = {
   slug?: string;
 };
 
-export default function RightSideBar({ doc }: { doc: Page }) {
-  const headings = doc.headings as Item[];
+export default function RightSideBar({ page }: { page: Page }) {
+  const headings = page.headings as Item[];
   const activeSlug = useActiveSlug(headings.map((h) => h.slug!));
 
   if (headings.length === 0) {

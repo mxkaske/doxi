@@ -11,6 +11,9 @@ const fontExtraBold = fetch(
   new URL("../../../fonts/Inter-ExtraBold.ttf", import.meta.url)
 ).then((res) => res.arrayBuffer());
 
+const TITLE = "Create your Documentation";
+const EXCERPT = "Build with Next.js and MDX. Powered by Contentlayer.";
+
 export async function GET(req: NextRequest) {
   try {
     const NAME = process.env.NEXT_PUBLIC_DOCUMENTATION_NAME;
@@ -19,15 +22,9 @@ export async function GET(req: NextRequest) {
     const { searchParams } = new URL(req.url);
 
     const hasTitle = searchParams.has("title");
-    const title = hasTitle
-      ? searchParams.get("title")
-      : "Create your Documentation";
+    const title = hasTitle ? searchParams.get("title") : TITLE;
     const hasExcerpt = searchParams.has("excerpt");
-    const excerpt = hasExcerpt
-      ? searchParams.get("excerpt")
-      : "Build with Next.js and MDX. Powered by Contentlayer.";
-    const hasChapter = searchParams.has("chapter");
-    const chapter = hasChapter ? searchParams.get("chapter") : "";
+    const excerpt = hasExcerpt ? searchParams.get("excerpt") : EXCERPT;
 
     return new ImageResponse(
       (
@@ -40,10 +37,6 @@ export async function GET(req: NextRequest) {
               <p tw="text-2xl ml-4 font-medium">{NAME}</p>
             </div>
             <div tw="flex-1 flex flex-col justify-end">
-              {/* TODO: dynamic doc */}
-              <p tw="text-green-500 text-xl font-medium mb-0 uppercase">
-                {chapter}
-              </p>
               <p tw="text-5xl font-extrabold text-green-900">{title}</p>
               <p tw="text-3xl text-gray-700">{excerpt}</p>
             </div>

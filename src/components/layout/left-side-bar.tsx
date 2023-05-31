@@ -6,8 +6,6 @@ import React from "react";
 import { PathSegments } from "src/contentlayer/utils";
 import ListElement from "./list-element";
 
-// FIXME: change name from doc to page
-
 // TODO: currently, only mdx files with a sourceFileDir !== "." are allowed
 function pagesTree() {
   return allPages.reduce((prev, curr) => {
@@ -26,15 +24,15 @@ function pagesTree() {
 }
 
 type Node = {
-  doc?: Page;
+  page?: Page;
   children: Node[];
 };
 
 // TODO: FIXME: instead of parentPathNames, pass parentPathSegments
-function buildTree(docs: Page[], parentPathNames: string[] = []): Node[] {
+function buildTree(pages: Page[], parentPathNames: string[] = []): Node[] {
   const level = parentPathNames.length;
   // console.log(parentPathNames);
-  const children = docs
+  const children = pages
     .filter((_) => {
       const pathSegments = _.pathSegments as PathSegments;
       return (
@@ -46,13 +44,13 @@ function buildTree(docs: Page[], parentPathNames: string[] = []): Node[] {
       );
     })
     .sort((a, b) => a.pathSegments[level].order - b.pathSegments[level].order)
-    .map<Node>((doc) => {
-      const pathSegments = doc.pathSegments as PathSegments;
+    .map<Node>((page) => {
+      const pathSegments = page.pathSegments as PathSegments;
       // console.log(pathSegments);
       return {
-        doc,
+        page,
         children: buildTree(
-          docs,
+          pages,
           pathSegments.map((_) => _.pathName)
         ),
       };
@@ -61,7 +59,7 @@ function buildTree(docs: Page[], parentPathNames: string[] = []): Node[] {
   // no leafs
   const pathNames = [
     ...new Set(
-      docs
+      pages
         .filter((_) => {
           const pathSegments = _.pathSegments as PathSegments;
           return (
@@ -93,8 +91,8 @@ function buildTree(docs: Page[], parentPathNames: string[] = []): Node[] {
     return children;
   }
   const a = pathNames.map((path) => ({
-    doc: undefined,
-    children: buildTree(docs, [path]),
+    page: undefined,
+    children: buildTree(pages, [path]),
   }));
 
   // console.log(children);
@@ -114,11 +112,11 @@ export default function LeftSideBar() {
   return (
     <ul className="grid gap-2">
       {Object.keys(tree).map((chapter) => {
-        const doc = tree[chapter];
+        const page = tree[chapter];
         return (
           <React.Fragment key={chapter}>
             <h5 className="font-bold capitalize">{chapter}</h5>
-            {doc.map(({ url, title }) => {
+            {page.map(({ url, title }) => {
               const isActive = pathname === url;
               return <ListElement key={url} {...{ url, title, isActive }} />;
             })}
